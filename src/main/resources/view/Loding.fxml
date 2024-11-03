@@ -6,7 +6,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.Controller.LodingController">
    <children>
       <ImageView fitHeight="523.0" fitWidth="418.0" layoutX="33.0" layoutY="32.0" pickOnBounds="true">
@@ -14,14 +13,14 @@
             <Image url="@../assest/lodingpageimage.jpg" />
          </image>
       </ImageView>
-      <Text fill="#fff200" layoutX="506.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to" textAlignment="CENTER" wrappingWidth="320.800048828125">
+      <Text fill="#ffd103" layoutX="506.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to" textAlignment="CENTER" wrappingWidth="320.800048828125">
          <font>
-            <Font name="System Bold" size="51.0" />
+            <Font name="Comic Sans MS Bold" size="51.0" />
          </font>
       </Text>
-      <Text fill="#fff200" layoutX="506.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The System" textAlignment="CENTER" wrappingWidth="320.800048828125">
+      <Text fill="#ffd103" layoutX="506.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The System" textAlignment="CENTER" wrappingWidth="320.800048828125">
          <font>
-            <Font name="System Bold" size="51.0" />
+            <Font name="Comic Sans MS Bold" size="51.0" />
          </font>
       </Text>
    </children>

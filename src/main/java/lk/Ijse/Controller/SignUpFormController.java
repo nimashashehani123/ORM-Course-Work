@@ -1,5 +1,6 @@
 package lk.Ijse.Controller;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -30,6 +31,9 @@ public class SignUpFormController {
     private JFXTextField txtUsername;
 
     @FXML
+    private JFXComboBox<?> txtrole;
+
+    @FXML
     void btnSignUpOnAction(ActionEvent event) {
 
     }
@@ -56,6 +60,11 @@ public class SignUpFormController {
 
     @FXML
     void showPasswordOnMouseReleased(MouseEvent event) {
+
+    }
+
+    @FXML
+    void txtroleOnAction(ActionEvent event) {
 
     }
 

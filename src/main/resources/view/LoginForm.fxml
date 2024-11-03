@@ -24,12 +24,12 @@
             <Insets />
          </opaqueInsets>
          <children>
-            <Label layoutX="76.0" layoutY="15.0" prefHeight="74.0" prefWidth="246.0" text="LogIn Form" textFill="#ffdc00">
+            <Label layoutX="76.0" layoutY="15.0" prefHeight="74.0" prefWidth="246.0" text="LogIn Form" textFill="#ffd103">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
-                  <Font name="Courier New Bold" size="40.0" />
+                  <Font name="Comic Sans MS Bold" size="40.0" />
                </font>
             </Label>
             <Label layoutX="53.0" layoutY="119.0" text="User Name" textFill="WHITE">
@@ -37,7 +37,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
-                  <Font name="Apple Braille" size="13.0" />
+                  <Font name="Comic Sans MS" size="13.0" />
                </font>
             </Label>
          </children>
@@ -46,38 +46,38 @@
       <Line endX="33.00000762939453" endY="34.000003814697266" layoutX="10.0" layoutY="10.0" startX="33.00000762939453" startY="555.0" strokeWidth="4.0" />
       <Line endX="23.00000762939453" endY="536.7999877929688" layoutX="20.0" layoutY="20.0" startX="440.9999694824219" startY="536.7999877929688" strokeWidth="26.0" />
       <Line endX="440.9999694824219" endY="22.000003814697266" layoutX="20.0" layoutY="20.0" startX="440.9999694824219" startY="523.7999877929688" strokeWidth="4.0" />
-      <JFXTextField fx:id="txtUsername" focusColor="#ffdc00" layoutX="532.0" layoutY="192.0" prefHeight="34.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtUsername" focusColor="#ffdc00" layoutX="532.0" layoutY="202.0" prefHeight="34.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
          <font>
-            <Font size="17.0" />
+            <Font name="Comic Sans MS" size="17.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtPassword1" focusColor="WHITE" labelFloat="true" layoutX="532.0" layoutY="256.0" prefHeight="40.0" prefWidth="282.0" promptText="Password" styleClass="usernamePassword" stylesheets="@../../../../../ORM_CourseWork_amilaiya/src/main/resources/CSS.css" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtPassword1" focusColor="WHITE" labelFloat="true" layoutX="532.0" layoutY="266.0" prefHeight="40.0" prefWidth="282.0" promptText="Password" styleClass="usernamePassword" stylesheets="@../../../../../ORM_CourseWork_amilaiya/src/main/resources/CSS.css" unFocusColor="WHITE">
          <font>
-            <Font size="17.0" />
+            <Font name="Comic Sans MS" size="17.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="txtPassword2" focusColor="#ffdc00" layoutX="532.0" layoutY="256.0" prefHeight="40.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
+      <JFXPasswordField fx:id="txtPassword2" focusColor="#ffdc00" layoutX="532.0" layoutY="266.0" prefHeight="40.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
          <font>
-            <Font size="17.0" />
+            <Font name="Comic Sans MS" size="17.0" />
          </font>
       </JFXPasswordField>
-      <Label layoutX="532.0" layoutY="325.0" text="Forgot Password?" textFill="#ffdc00">
+      <Label layoutX="532.0" layoutY="325.0" text="Forgot Password?" textFill="#ffd103">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
-            <Font name="Apple Braille" size="13.0" />
+            <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Label>
       <Button layoutX="534.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnLogInOnAction" prefHeight="34.0" prefWidth="282.0" styleClass="LoginBtn" stylesheets="@../style/styel.css" text="   LogIn" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="17.0" />
+            <Font name="Comic Sans MS Bold" size="17.0" />
          </font>
       </Button>
       <Line endX="5.0" endY="-19.0" layoutX="652.0" layoutY="464.0" startX="-114.0" startY="-19.0" stroke="WHITE" strokeWidth="2.0" />
       <Button layoutX="535.0" layoutY="479.0" mnemonicParsing="false" onAction="#btnSignUpOnAction" prefHeight="34.0" prefWidth="282.0" styleClass="LoginBtn" stylesheets="@../style/styel.css" text=" SignUp" textFill="WHITE">
          <font>
-            <Font name="Arial Bold" size="17.0" />
+            <Font name="Comic Sans MS Bold" size="17.0" />
          </font>
       </Button>
       <Label layoutX="667.0" layoutY="437.0" text="OR" textFill="WHITE">
@@ -85,7 +85,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
-            <Font name="Apple Braille" size="13.0" />
+            <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Label>
       <Line endX="5.0" endY="-19.0" layoutX="811.0" layoutY="464.0" startX="-114.0" startY="-19.0" stroke="WHITE" strokeWidth="2.0" />
@@ -102,7 +102,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
          <font>
-            <Font name="Apple Braille" size="13.0" />
+            <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Label>
    </children>
