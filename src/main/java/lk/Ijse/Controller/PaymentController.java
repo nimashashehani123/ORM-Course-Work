@@ -1,6 +1,7 @@
 package lk.Ijse.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,10 +9,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
-public class StudentController {
+public class PaymentController {
 
     @FXML
-    private JFXButton btnaddstudent;
+    private JFXButton btnaddpayment;
 
     @FXML
     private JFXButton btnclear;
@@ -20,52 +21,46 @@ public class StudentController {
     private JFXButton btndelete;
 
     @FXML
-    private JFXButton btnsearchstudent;
+    private JFXButton btnsearchpayment;
 
     @FXML
     private JFXButton btnupdate;
 
     @FXML
-    private TableColumn<?, ?> coladdress;
+    private TableColumn<?, ?> colamount;
 
     @FXML
-    private TableColumn<?, ?> colemail;
+    private TableColumn<?, ?> coldate;
 
     @FXML
-    private TableColumn<?, ?> colstudentid;
+    private TableColumn<?, ?> colenrollmentid;
 
     @FXML
-    private TableColumn<?, ?> colstudentname;
+    private TableColumn<?, ?> colpaymentid;
 
     @FXML
-    private TableColumn<?, ?> coltel;
+    private AnchorPane paymentform;
 
     @FXML
-    private AnchorPane studentform;
+    private TableView<?> tblpayment;
 
     @FXML
-    private TableView<?> tblstudent;
+    private JFXTextField txtamount;
 
     @FXML
-    private JFXTextField txtaddress;
+    private JFXTextField txtdate;
 
     @FXML
-    private JFXTextField txtemail;
+    private JFXComboBox<?> txtenrollmentid;
+
+    @FXML
+    private JFXTextField txtpaymentid;
 
     @FXML
     private JFXTextField txtsearch;
 
     @FXML
-    private JFXTextField txtstudentid;
-
-    @FXML
-    private JFXTextField txtstudentname;
-
-    @FXML
-    private JFXTextField txttel;
-
-    @FXML
-    void btnaddstudentOnAction(ActionEvent event) {
+    void btnaddpaymentOnAction(ActionEvent event) {
 
     }
 
@@ -80,7 +75,7 @@ public class StudentController {
     }
 
     @FXML
-    void btnsearchstudentOnAction(ActionEvent event) {
+    void btnsearchpaymentOnAction(ActionEvent event) {
 
     }
 

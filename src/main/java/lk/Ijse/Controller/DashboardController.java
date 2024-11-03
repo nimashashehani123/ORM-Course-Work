@@ -24,6 +24,9 @@ public class DashboardController {
     private JFXButton btnpayments;
 
     @FXML
+    private JFXButton btnseeprofile;
+
+    @FXML
     private JFXButton btnstudent;
 
     @FXML
@@ -63,6 +66,11 @@ public class DashboardController {
 
     @FXML
     void btnpaymentsOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnseeprofileOnAction(ActionEvent event) {
 
     }
 

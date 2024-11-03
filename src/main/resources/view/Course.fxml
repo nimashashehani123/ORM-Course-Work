@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="courseform" prefHeight="722.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.Controller.CourseController">
+   <children>
+      <Label layoutX="33.0" layoutY="32.0" text="Course Management 🧑‍🍳">
+         <font>
+            <Font name="Comic Sans MS" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="137.0" text="Course Id :">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtscourseid" layoutX="194.0" layoutY="132.0" prefHeight="26.0" prefWidth="218.0" />
+      <Label layoutX="509.0" layoutY="139.0" text="Course Name :">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtcoursename" layoutX="657.0" layoutY="134.0" prefHeight="26.0" prefWidth="282.0" />
+      <Label layoutX="1069.0" layoutY="136.0" text="Duration : ">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtduration" layoutX="1162.0" layoutY="132.0" prefHeight="26.0" prefWidth="282.0" />
+      <Label layoutX="55.0" layoutY="225.0" text="Fees : ">
+         <font>
+            <Font name="Comic Sans MS" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtfees" layoutX="148.0" layoutY="221.0" prefHeight="26.0" prefWidth="281.0" />
+      <JFXButton fx:id="btnaddcourse" layoutX="544.0" layoutY="214.0" onAction="#btnaddcourseOnAction" style="-fx-background-color: pink;" text="Add Course ➕">
+         <font>
+            <Font name="Comic Sans MS" size="19.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tblcourse" layoutX="209.0" layoutY="400.0" prefHeight="295.0" prefWidth="1079.0">
+         <columns>
+            <TableColumn fx:id="colcourseid" prefWidth="143.99996948242188" text="Course Id" />
+            <TableColumn fx:id="colcoursename" minWidth="0.0" prefWidth="297.59999084472656" text="Course Name" />
+            <TableColumn fx:id="colduration" minWidth="0.0" prefWidth="237.5999755859375" text="Duration" />
+            <TableColumn fx:id="colfees" minWidth="0.0" prefWidth="216.0" text="Fees" />
+            <TableColumn fx:id="colupdate" minWidth="0.0" prefWidth="92.0001220703125" />
+            <TableColumn fx:id="coldelete" minWidth="0.0" prefWidth="89.599853515625" />
+         </columns>
+      </TableView>
+      <JFXTextField fx:id="txtsearch" layoutX="938.0" layoutY="344.0" prefHeight="26.0" prefWidth="282.0" />
+      <JFXButton fx:id="btnsearchcourse" layoutX="1233.0" layoutY="343.0" onAction="#btnsearchcourseOnAction" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: yellow;" text="Search 🔍">
+         <font>
+            <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
