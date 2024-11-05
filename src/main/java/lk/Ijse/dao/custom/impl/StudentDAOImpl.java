@@ -39,9 +39,9 @@ public class StudentDAOImpl implements StudentDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction tx = session.beginTransaction();
 
-        User user = session.get(User.class, ID);
-        if (user != null) {
-            session.delete(user);
+        Student student = session.get(Student.class, ID);
+        if (student != null) {
+            session.delete(student);
             tx.commit();
             session.close();
             return true;
@@ -84,7 +84,7 @@ public class StudentDAOImpl implements StudentDAO {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             String hql = "SELECT COUNT(s.sid) FROM Student s WHERE s.sid = :id";
             Query<Long> query = session.createQuery(hql, Long.class);
-            query.setParameter("userId", id);
+            query.setParameter("id", id);
             Long count = query.uniqueResult();
             return count != null && count > 0;
         }

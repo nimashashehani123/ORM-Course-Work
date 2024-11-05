@@ -83,7 +83,7 @@ public class UserDAOImpl implements UserDAO {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             String hql = "SELECT COUNT(u.userid) FROM User u WHERE u.userid = :id";
             Query<Long> query = session.createQuery(hql, Long.class);
-            query.setParameter("userId", id);
+            query.setParameter("id", id);
             Long count = query.uniqueResult();
             return count != null && count > 0;
         }

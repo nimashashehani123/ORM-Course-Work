@@ -39,7 +39,8 @@ public class StudentBoImpl implements StudentBo {
         List<Student> students = studentDAO.getAll();
         List<StudentDTO> dtos = new ArrayList<>();
         for (Student student : students) {
-            dtos.add(new StudentDTO(student.getSid(),student.getName(),student.getAddress(),student.getTel(),student.getEmail(),student.getUser().getUserid()));
+            String userId = student.getUser() != null ? student.getUser().getUserid() : null;
+            dtos.add(new StudentDTO(student.getSid(), student.getName(), student.getAddress(), student.getTel(), student.getEmail(), userId));
         }
         return dtos;
     }

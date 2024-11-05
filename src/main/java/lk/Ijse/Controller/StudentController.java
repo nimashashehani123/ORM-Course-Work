@@ -207,7 +207,7 @@ public class StudentController implements Initializable {
     @FXML
     void btnupdateOnAction(ActionEvent event) throws Exception {
         String name = txtstudentname.getText();
-        String address = txtstudentname.getText();
+        String address = txtaddress.getText();
         String tel = txttel.getText();
         String email = txtemail.getText();
 

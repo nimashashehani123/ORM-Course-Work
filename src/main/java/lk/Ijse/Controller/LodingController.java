@@ -34,7 +34,7 @@ public class LodingController implements Initializable {
         timeline.setOnFinished(actionEvent -> {
             try {
                 lodingform.getScene().getWindow().hide();
-                Parent root = FXMLLoader.load(getClass().getResource("/view/User.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/view/Student.fxml"));
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.centerOnScreen();
