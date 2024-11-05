@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.Controller.LoginFormController">
+<AnchorPane fx:id="loginform" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.Controller.LoginFormController">
    <children>
       <ImageView fitHeight="523.0" fitWidth="418.0" layoutX="43.0" layoutY="42.0" pickOnBounds="true">
          <image>
@@ -51,7 +51,7 @@
             <Font name="Comic Sans MS" size="17.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtPassword1" focusColor="WHITE" labelFloat="true" layoutX="532.0" layoutY="266.0" prefHeight="40.0" prefWidth="282.0" promptText="Password" styleClass="usernamePassword" stylesheets="@../../../../../ORM_CourseWork_amilaiya/src/main/resources/CSS.css" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtPassword1" focusColor="WHITE" labelFloat="true" layoutX="532.0" layoutY="266.0" prefHeight="40.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
          <font>
             <Font name="Comic Sans MS" size="17.0" />
          </font>

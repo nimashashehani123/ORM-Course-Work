@@ -49,13 +49,13 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtemail" layoutX="655.0" layoutY="222.0" prefHeight="26.0" prefWidth="248.0" />
+      <JFXTextField fx:id="txtrepassword" layoutX="655.0" layoutY="222.0" prefHeight="26.0" prefWidth="248.0" />
       <JFXButton fx:id="btnadduser" layoutX="993.0" layoutY="325.0" onAction="#btnadduserOnAction" style="-fx-background-color: #69d9f5;" text="Add User ➕">
          <font>
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tbluser" layoutX="102.0" layoutY="403.0" prefHeight="299.0" prefWidth="1311.0">
+      <TableView fx:id="tbluser" layoutX="102.0" layoutY="403.0" onMouseClicked="#rowOnMouseClicked" prefHeight="299.0" prefWidth="1311.0">
          <columns>
             <TableColumn fx:id="coluserid" prefWidth="167.19998168945312" text="User Id" />
             <TableColumn fx:id="colusername" minWidth="0.0" prefWidth="244.00003051757812" text="User Name" />
@@ -90,12 +90,12 @@
             <Font size="15.0" />
          </font>
       </JFXPasswordField>
-      <JFXPasswordField fx:id="txtrepassword" layoutX="655.0" layoutY="218.0" prefHeight="31.0" prefWidth="248.0">
+      <JFXPasswordField fx:id="txtrepassword1" layoutX="655.0" layoutY="218.0" prefHeight="31.0" prefWidth="248.0">
          <font>
             <Font size="15.0" />
          </font>
       </JFXPasswordField>
-      <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="872.0" layoutY="216.0" onMousePressed="#showPassword2OnMousePresseds" onMouseReleased="#showPassword2OnMouseReleased" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="872.0" layoutY="216.0" onMousePressed="#showrePassword1OnMousePresseds" onMouseReleased="#showrePassword1OnMouseReleased" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -103,7 +103,7 @@
             <Image url="@../assest/eye.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="343.0" layoutY="218.0" onMousePressed="#showPassword2OnMousePresseds" onMouseReleased="#showPassword2OnMouseReleased" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="343.0" layoutY="218.0" onMousePressed="#showPassword1OnMousePresseds" onMouseReleased="#showPassword1OnMouseReleased" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

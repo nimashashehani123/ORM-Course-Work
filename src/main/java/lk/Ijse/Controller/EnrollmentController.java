@@ -12,9 +12,6 @@ import javafx.scene.layout.AnchorPane;
 public class EnrollmentController {
 
     @FXML
-    private JFXButton btnaddcourse;
-
-    @FXML
     private JFXButton btnaddenrollment;
 
     @FXML
@@ -30,10 +27,10 @@ public class EnrollmentController {
     private JFXButton btnsearchstudent;
 
     @FXML
-    private TableColumn<?, ?> colcourse_id;
+    private TableColumn<?, ?> colcomment;
 
     @FXML
-    private TableColumn<?, ?> colcourseid;
+    private TableColumn<?, ?> colcourse_id;
 
     @FXML
     private TableColumn<?, ?> colcoursename;
@@ -42,16 +39,10 @@ public class EnrollmentController {
     private TableColumn<?, ?> coldate;
 
     @FXML
-    private TableColumn<?, ?> coldeletecart;
-
-    @FXML
     private TableColumn<?, ?> colenrollmentid;
 
     @FXML
     private TableColumn<?, ?> colremain_fee;
-
-    @FXML
-    private TableColumn<?, ?> colremainfee;
 
     @FXML
     private TableColumn<?, ?> colstudentid;
@@ -60,13 +51,16 @@ public class EnrollmentController {
     private TableColumn<?, ?> colstudentname;
 
     @FXML
+    private TableColumn<?, ?> colupfront_fee;
+
+    @FXML
     private AnchorPane enrollmentform;
 
     @FXML
-    private TableView<?> tblcart;
+    private TableView<?> tblenrollment;
 
     @FXML
-    private TableView<?> tblenrollment;
+    private JFXTextField txtcomment;
 
     @FXML
     private JFXComboBox<?> txtcourseid;
@@ -97,11 +91,6 @@ public class EnrollmentController {
 
     @FXML
     private JFXTextField txtupfrontpayment;
-
-    @FXML
-    void btnaddcourseOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnaddenrollmentOnAction(ActionEvent event) {

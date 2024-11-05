@@ -1,6 +1,6 @@
 package lk.Ijse;
-public class Main {
+public class Wrapper {
     public static void main(String[] args) {
-
+            Launcher.main(args);
     }
 }

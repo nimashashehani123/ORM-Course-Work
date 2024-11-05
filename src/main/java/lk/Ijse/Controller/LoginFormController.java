@@ -5,8 +5,12 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class LoginFormController {
+
+    @FXML
+    private AnchorPane loginform;
 
     @FXML
     private JFXTextField txtPassword1;
