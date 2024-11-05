@@ -3,6 +3,7 @@ package lk.Ijse.dao.custom.impl;
 import lk.Ijse.config.FactoryConfiguration;
 import lk.Ijse.dao.custom.CourseDAO;
 import lk.Ijse.entity.Course;
+import lk.Ijse.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -87,5 +88,36 @@ public class CourseDAOImpl implements CourseDAO {
             Long count = query.uniqueResult();
             return count != null && count > 0;
         }
+    }
+
+    @Override
+    public Course findCourseById(String courseId) throws Exception {
+        Transaction transaction = null;
+        Course course = null;
+
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+
+            Query<Course> query = session.createQuery("FROM Course c WHERE c.cid = :id", Course.class);
+            query.setParameter("id", courseId);
+            course = query.uniqueResult();
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            throw e;
+        }
+
+        return course;
+    }
+
+    @Override
+    public List<String> getAllCourseIds() throws SQLException, ClassNotFoundException {
+        List<String> courseIds = new ArrayList<>();
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Query<String> query = session.createQuery("SELECT c.cid FROM Course c", String.class);
+            courseIds = query.list();
+        }
+        return courseIds;
     }
 }

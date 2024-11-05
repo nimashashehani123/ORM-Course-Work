@@ -15,5 +15,6 @@ public interface CourseBo extends SuperBo {
     public List<CourseDTO> getAllCourse() throws SQLException, ClassNotFoundException;
     public String generateNewCourseID() throws SQLException, ClassNotFoundException, IOException;
     public boolean CourseIdExists(String courseId) throws SQLException, ClassNotFoundException;
+    public List<String> getAllCourseIds() throws SQLException, ClassNotFoundException;
 
 }

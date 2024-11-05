@@ -96,17 +96,16 @@ public class UserDAOImpl implements UserDAO {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             transaction = session.beginTransaction();
 
-            // Create a query to retrieve the User by userId
             Query<User> query = session.createQuery("FROM User u WHERE u.userid = :userId", User.class);
             query.setParameter("userId", userId);
-            user = query.uniqueResult(); // Get the single result
+            user = query.uniqueResult();
 
-            transaction.commit(); // Commit the transaction
+            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback(); // Rollback if there's an error
-            throw e; // Re-throw the exception
+            if (transaction != null) transaction.rollback();
+            throw e;
         }
 
-        return user; // Return the User object (or null if not found)
+        return user;
     }
 }

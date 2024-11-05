@@ -5,7 +5,6 @@ import lk.Ijse.dao.DAOFactory;
 import lk.Ijse.dao.custom.StudentDAO;
 import lk.Ijse.dao.custom.UserDAO;
 import lk.Ijse.dto.StudentDTO;
-import lk.Ijse.dto.UserDTO;
 import lk.Ijse.entity.Student;
 import lk.Ijse.entity.User;
 
@@ -53,5 +52,15 @@ public class StudentBoImpl implements StudentBo {
     @Override
     public boolean StudentIdExists(String studentId) throws SQLException, ClassNotFoundException {
         return studentDAO.IdExists(studentId);
+    }
+
+    @Override
+    public List<String> getAllStudentIds() throws SQLException, ClassNotFoundException {
+        List<String> studentIds = new ArrayList<>();
+        List<Student> students = studentDAO.getAll();
+        for (Student student : students) {
+            studentIds.add(student.getSid());
+        }
+        return studentIds;
     }
 }

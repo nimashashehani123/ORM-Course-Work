@@ -5,6 +5,8 @@ import lk.Ijse.dao.DAOFactory;
 import lk.Ijse.dao.custom.CourseDAO;
 import lk.Ijse.dto.CourseDTO;
 import lk.Ijse.entity.Course;
+import lk.Ijse.entity.Student;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -46,5 +48,15 @@ public class CourseBoImpl implements CourseBo {
     @Override
     public boolean CourseIdExists(String courseId) throws SQLException, ClassNotFoundException {
         return courseDAO.IdExists(courseId);
+    }
+
+    @Override
+    public List<String> getAllCourseIds() throws SQLException, ClassNotFoundException {
+        List<String> courseIds = new ArrayList<>();
+        List<Course> courses = courseDAO.getAll();
+        for (Course course : courses) {
+            courseIds.add(course.getCid());
+        }
+        return courseIds;
     }
 }

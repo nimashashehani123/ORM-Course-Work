@@ -15,4 +15,5 @@ public interface StudentBo extends SuperBo {
     public List<StudentDTO> getAllStudent() throws SQLException, ClassNotFoundException;
     public String generateNewStudentID() throws SQLException, ClassNotFoundException, IOException;
     public boolean StudentIdExists(String studentId) throws SQLException, ClassNotFoundException;
+    public List<String> getAllStudentIds() throws SQLException, ClassNotFoundException;
 }

@@ -16,7 +16,7 @@ import java.util.List;
 public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long eid; // Change to Long for auto-incrementing
+    private String eid;
 
     @ManyToOne
     @JoinColumn(name = "sid")
@@ -33,4 +33,13 @@ public class Enrollment {
     private Double upfrontpayment;
     private Double remainingfee;
     private String comment;
+
+    public Enrollment(String eid, Student student, Course course, LocalDate date, Double remainingfee, String comment) {
+        this.eid = eid;
+        this.student = student;
+        this.course = course;
+        this.date = date;
+        this.remainingfee = remainingfee;
+        this.comment = comment;
+    }
 }
