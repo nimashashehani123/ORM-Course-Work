@@ -2,13 +2,34 @@ package lk.Ijse.Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.Ijse.Utill.PasswordEncrypt;
+import lk.Ijse.Utill.PasswordVerifier;
+import lk.Ijse.bo.BoFactory;
+import lk.Ijse.bo.custom.StudentBo;
+import lk.Ijse.bo.custom.impl.StudentBoImpl;
+import lk.Ijse.dto.StudentDTO;
+import lk.Ijse.dto.UserDTO;
+import lk.Ijse.entity.Student;
+import lk.Ijse.entity.User;
+import lk.Ijse.entity.tm.StudentTm;
 
-public class StudentController {
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
+public class StudentController implements Initializable {
 
     @FXML
     private JFXButton btnaddstudent;
@@ -44,7 +65,7 @@ public class StudentController {
     private AnchorPane studentform;
 
     @FXML
-    private TableView<?> tblstudent;
+    private TableView<StudentTm> tblstudent;
 
     @FXML
     private JFXTextField txtaddress;
@@ -63,30 +84,152 @@ public class StudentController {
 
     @FXML
     private JFXTextField txttel;
+    ObservableList<StudentTm> observableList;
+    String ID;
+    String userid = "U001";
+    StudentBo studentBo = (StudentBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.Student);
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            getAll();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        setCellValueFactory();
+        generateNextUserId();
+    }
+
+    private void generateNextUserId() {
+        String nextId = null;
+        try {
+            nextId = studentBo.generateNewStudentID();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        txtstudentid.setText(nextId);
+    }
+
+    private void setCellValueFactory() {
+        colstudentid.setCellValueFactory(new PropertyValueFactory<>("sid"));
+        colstudentname.setCellValueFactory(new PropertyValueFactory<>("name"));
+        coladdress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        coltel.setCellValueFactory(new PropertyValueFactory<>("tel"));
+        colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+    }
+
+    private void getAll() throws SQLException, ClassNotFoundException {
+        observableList = FXCollections.observableArrayList();
+        List<StudentDTO> allStudent = studentBo.getAllStudent();
+
+        for (StudentDTO studentDTO : allStudent){
+            observableList.add(new StudentTm(studentDTO.getSid(),studentDTO.getName(),studentDTO.getAddress(),studentDTO.getTel(),studentDTO.getEmail()));
+        }
+        tblstudent.setItems(observableList);
+    }
 
     @FXML
-    void btnaddstudentOnAction(ActionEvent event) {
+    void btnaddstudentOnAction(ActionEvent event) throws Exception {
+        String id = txtstudentid.getText();
+        String name = txtstudentname.getText();
+        String address = txtaddress.getText();
+        String tel = txttel.getText();
+        String email = txtemail.getText();
 
+        if (studentBo.StudentIdExists(id)){
+            new Alert(Alert.AlertType.ERROR, "Student ID " + id + " already exists!").show();
+            return;
+        }
+
+            if (studentBo.saveStudent(new StudentDTO(id, name, address, tel,email,userid))) {
+                clearTextFileds();
+                generateNextUserId();
+                getAll();
+                new Alert(Alert.AlertType.CONFIRMATION, "Saved!!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Error!!").show();
+            }
+
+
+    }
+
+    private void clearTextFileds() {
+        txtstudentid.clear();
+        txtstudentname.clear();
+        txtaddress.clear();
+        txttel.clear();
+        txtemail.clear();
+        generateNextUserId();
     }
 
     @FXML
     void btnclearOnAction(ActionEvent event) {
+        clearTextFileds();
 
     }
 
     @FXML
-    void btndeleteOnAction(ActionEvent event) {
+    void btndeleteOnAction(ActionEvent event) throws Exception {
+        ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Optional<ButtonType> result = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
 
+        if (result.orElse(no) == yes) {
+            if (!studentBo.deleteStudent(ID)) {
+                new Alert(Alert.AlertType.ERROR, "Error!!").show();
+            }
+        }
+        generateNextUserId();
+        clearTextFileds();
+        getAll();
     }
 
     @FXML
     void btnsearchstudentOnAction(ActionEvent event) {
+        String searchText = txtsearch.getText().toLowerCase();
+        ObservableList<StudentTm> filteredList = FXCollections.observableArrayList();
 
+        for (StudentTm studenttm : observableList) {
+            if (studenttm.getSid().toLowerCase().contains(searchText)) {
+                filteredList.add(studenttm);
+            }
+        }
+        tblstudent.setItems(filteredList);
     }
 
     @FXML
-    void btnupdateOnAction(ActionEvent event) {
+    void btnupdateOnAction(ActionEvent event) throws Exception {
+        String name = txtstudentname.getText();
+        String address = txtstudentname.getText();
+        String tel = txttel.getText();
+        String email = txtemail.getText();
 
+            if(studentBo.updateStudent(new StudentDTO(ID,name,address,tel,email,userid))){
+                new Alert(Alert.AlertType.CONFIRMATION, "Update Successfully!!").show();
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Error!!").show();
+            }
+        clearTextFileds();
+        getAll();
+    }
+    public void rowOnMouseClicked(MouseEvent mouseEvent) {
+        Integer index = tblstudent.getSelectionModel().getSelectedIndex();
+        if (index <= -1) {
+            return;
+        }
+        ID = colstudentid.getCellData(index).toString();
+        txtstudentid.setText(ID);
+        txtstudentname.setText(colstudentname.getCellData(index).toString());
+        txtaddress.setText(coladdress.getCellData(index).toString());
+        txttel.setText(coltel.getCellData(index).toString());
+        txtemail.setText(colemail.getCellData(index).toString());
     }
 
 }

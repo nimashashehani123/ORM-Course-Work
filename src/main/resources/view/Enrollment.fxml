@@ -16,7 +16,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="tblenrollment" layoutX="36.0" layoutY="401.0" prefHeight="311.0" prefWidth="1450.0">
+      <TableView fx:id="tblenrollment" layoutX="36.0" layoutY="401.0" onMouseClicked="#rowOnMouseClicked" prefHeight="311.0" prefWidth="1450.0">
          <columns>
             <TableColumn fx:id="colenrollmentid" prefWidth="103.19997787475586" text="Enrollment Id" />
             <TableColumn fx:id="colstudentid" minWidth="0.0" prefWidth="128.0000762939453" text="Student Id" />

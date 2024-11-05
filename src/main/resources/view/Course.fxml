@@ -44,7 +44,7 @@
             <Font name="Comic Sans MS" size="19.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblcourse" layoutX="209.0" layoutY="400.0" prefHeight="295.0" prefWidth="1079.0">
+      <TableView fx:id="tblcourse" layoutX="209.0" layoutY="400.0" onMouseClicked="#rowOnMouseClicked" prefHeight="295.0" prefWidth="1079.0">
          <columns>
             <TableColumn fx:id="colcourseid" prefWidth="143.99996948242188" text="Course Id" />
             <TableColumn fx:id="colcoursename" minWidth="0.0" prefWidth="297.59999084472656" text="Course Name" />
