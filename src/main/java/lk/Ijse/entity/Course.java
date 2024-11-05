@@ -24,4 +24,11 @@ public class Course {
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Enrollment> enrollmentList = new ArrayList<>();
+
+    public Course(String cid, String coursename, String duration, Double fee) {
+        this.cid = cid;
+        this.coursename = coursename;
+        this.duration = duration;
+        this.fee = fee;
+    }
 }
