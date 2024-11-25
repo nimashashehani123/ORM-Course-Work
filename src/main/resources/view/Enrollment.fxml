@@ -6,11 +6,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="enrollmentform" prefHeight="722.0" prefWidth="1540.0" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.Controller.EnrollmentController">
+<AnchorPane fx:id="enrollmentform" prefHeight="722.0" prefWidth="1540.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.Controller.EnrollmentController">
    <children>
+      <ImageView fitHeight="722.0" fitWidth="1540.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.7;">
+         <image>
+            <Image url="@../assest/dashboard.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="24.0" layoutY="107.0" prefHeight="289.0" prefWidth="1486.0" style="-fx-background-color: rgba(0,0,0,0.5);" />
       <Label layoutX="50.0" layoutY="260.0" text="Total Fees (Rs.) : " textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
@@ -29,9 +37,9 @@
             <TableColumn fx:id="colcomment" minWidth="0.0" prefWidth="191.199951171875" text="Comment" />
          </columns>
       </TableView>
-      <JFXTextField fx:id="txtsearchstudent" layoutX="36.0" layoutY="350.0" prefHeight="26.0" prefWidth="106.0" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtsearchstudent" layoutX="36.0" layoutY="350.0" prefHeight="26.0" prefWidth="106.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
       <JFXButton fx:id="btnsearchstudent" layoutX="146.0" layoutY="354.0" onAction="#btnsearchstudentOnAction" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: yellow;" text="Student Id 🔍">
@@ -44,9 +52,9 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtcoursename" editable="false" layoutX="567.0" layoutY="179.0" prefHeight="26.0" prefWidth="192.0" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtcoursename" editable="false" layoutX="567.0" layoutY="179.0" prefHeight="26.0" prefWidth="192.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
       <JFXButton fx:id="btnaddenrollment" layoutX="1273.0" layoutY="168.0" onAction="#btnaddenrollmentOnAction" prefHeight="32.0" prefWidth="207.0" style="-fx-background-color: #69d9f5;" text="Add Enrollment➕">
@@ -59,9 +67,9 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtsearchcourse" layoutX="308.0" layoutY="352.0" prefHeight="26.0" prefWidth="106.0" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtsearchcourse" layoutX="308.0" layoutY="352.0" prefHeight="26.0" prefWidth="106.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
       <JFXButton fx:id="btnsearchcourse" layoutX="414.0" layoutY="356.0" onAction="#btnsearchcourseOnAction" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: yellow;" text="Course Id 🔍">
@@ -79,9 +87,9 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtenrollmentid" editable="false" layoutX="182.0" layoutY="109.0" prefHeight="31.0" prefWidth="155.0" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtenrollmentid" editable="false" layoutX="182.0" layoutY="109.0" prefHeight="31.0" prefWidth="155.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
       <Label layoutX="883.0" layoutY="107.0" text="Student Name : " textFill="WHITE">
@@ -99,21 +107,21 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txttotalfees" editable="false" layoutX="212.0" layoutY="250.0" prefHeight="31.0" prefWidth="149.0" unFocusColor="WHITE">
+      <JFXTextField fx:id="txttotalfees" editable="false" layoutX="212.0" layoutY="250.0" prefHeight="31.0" prefWidth="149.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXComboBox fx:id="txtstudentid" layoutX="566.0" layoutY="107.0" onAction="#handleStudentSelection" prefHeight="26.0" prefWidth="166.0" unFocusColor="WHITE" />
+      <JFXComboBox fx:id="txtstudentid" layoutX="566.0" layoutY="107.0" onAction="#handleStudentSelection" prefHeight="26.0" prefWidth="166.0" style="-fx-color: white;" unFocusColor="WHITE" />
       <JFXComboBox fx:id="txtcourseid" layoutX="169.0" layoutY="185.0" onAction="#handleCourseSelection" prefHeight="26.0" prefWidth="166.0" unFocusColor="WHITE" />
-      <JFXTextField fx:id="txtstudentname" editable="false" layoutX="1032.0" layoutY="104.0" prefHeight="26.0" prefWidth="166.0" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtstudentname" editable="false" layoutX="1032.0" layoutY="104.0" prefHeight="26.0" prefWidth="166.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtupfrontpayment" layoutX="641.0" layoutY="250.0" prefHeight="31.0" prefWidth="149.0" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtupfrontpayment" layoutX="641.0" layoutY="250.0" prefHeight="31.0" prefWidth="149.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
       <JFXButton fx:id="btnclear1" layoutX="1275.0" layoutY="251.0" onAction="#btnclearOnAction" prefHeight="32.0" prefWidth="207.0" style="-fx-background-color: #faa302;" text="Clear ✨">
@@ -126,9 +134,9 @@
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </JFXButton>
-      <JFXTextField fx:id="txtdate" editable="false" layoutX="949.0" layoutY="169.0" prefHeight="26.0" prefWidth="166.0" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtdate" editable="false" layoutX="949.0" layoutY="169.0" prefHeight="26.0" prefWidth="166.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
       <Label layoutX="883.0" layoutY="181.0" text="Date : " textFill="WHITE">
@@ -141,9 +149,9 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtcomment" layoutX="984.0" layoutY="250.0" prefHeight="31.0" prefWidth="149.0" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtcomment" layoutX="984.0" layoutY="250.0" prefHeight="31.0" prefWidth="149.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
       <Label layoutX="883.0" layoutY="260.0" text="Comment : " textFill="WHITE">
@@ -156,9 +164,9 @@
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </JFXButton>
-      <JFXTextField fx:id="txtsearchenrollment" layoutX="1250.0" layoutY="356.0" onAction="#txtsearchenrollmentOnAction" prefHeight="26.0" prefWidth="106.0" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtsearchenrollment" layoutX="1250.0" layoutY="356.0" onAction="#txtsearchenrollmentOnAction" prefHeight="26.0" prefWidth="106.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
       <JFXButton fx:id="btnsearchenrollment" layoutX="1358.0" layoutY="362.0" onAction="#btnsearchsenrollmentOnAction" prefHeight="27.0" prefWidth="126.0" style="-fx-background-color: yellow;" text="Enrollment Id 🔍">

@@ -15,3 +15,9 @@
     -fx-background-color: transparent;
     -fx-border-color: white;
 }
+
+.dashboard{
+    -fx-background-image: url('assest/lodingpageimage.jpg');
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}

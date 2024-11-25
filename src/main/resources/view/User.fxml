@@ -13,43 +13,64 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="userform" prefHeight="722.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.Controller.UserController">
+<AnchorPane fx:id="userform" prefHeight="722.0" prefWidth="1540.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.Controller.UserController">
    <children>
-      <Label layoutX="33.0" layoutY="32.0" text="User Management 👤">
+      <ImageView fitHeight="722.0" fitWidth="1540.0" layoutX="2.0" pickOnBounds="true" smooth="false" style="-fx-opacity: 0.7;">
+         <image>
+            <Image url="@../assest/dashboard.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="28.0" layoutY="98.0" prefHeight="299.0" prefWidth="1446.0" style="-fx-background-color: rgba(0,0,0,0.5);" />
+      <Label layoutX="33.0" layoutY="32.0" text="User Management 👤" textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="137.0" text="User Id :">
+      <Label layoutX="50.0" layoutY="137.0" text="User Id :" textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtuserid" layoutX="148.0" layoutY="132.0" prefHeight="26.0" prefWidth="218.0" />
-      <Label layoutX="509.0" layoutY="139.0" text="User Name :">
+      <JFXTextField fx:id="txtuserid" layoutX="148.0" layoutY="132.0" prefHeight="26.0" prefWidth="218.0" style="-fx-text-fill: white;">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></JFXTextField>
+      <Label layoutX="509.0" layoutY="139.0" text="User Name :" textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtusername" layoutX="657.0" layoutY="134.0" prefHeight="26.0" prefWidth="241.0" />
-      <Label layoutX="1069.0" layoutY="136.0" text="Email : ">
+      <JFXTextField fx:id="txtusername" layoutX="657.0" layoutY="134.0" prefHeight="26.0" prefWidth="241.0" style="-fx-text-fill: white;">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></JFXTextField>
+      <Label layoutX="1069.0" layoutY="136.0" text="Email : " textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtemail" layoutX="1162.0" layoutY="132.0" prefHeight="26.0" prefWidth="282.0" />
-      <Label layoutX="55.0" layoutY="225.0" text="Password : ">
+      <JFXTextField fx:id="txtemail" layoutX="1162.0" layoutY="132.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></JFXTextField>
+      <Label layoutX="55.0" layoutY="225.0" text="Password : " textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtpassword" layoutX="148.0" layoutY="221.0" prefHeight="26.0" prefWidth="230.0" />
-      <Label layoutX="514.0" layoutY="229.0" text="Re-Password : ">
+      <JFXTextField fx:id="txtpassword" layoutX="148.0" layoutY="217.0" prefHeight="26.0" prefWidth="230.0" style="-fx-text-fill: white;">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></JFXTextField>
+      <Label layoutX="514.0" layoutY="229.0" text="Re-Password : " textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtrepassword" layoutX="655.0" layoutY="222.0" prefHeight="26.0" prefWidth="248.0" />
+      <JFXTextField fx:id="txtrepassword" layoutX="655.0" layoutY="218.0" prefHeight="26.0" prefWidth="248.0" style="-fx-text-fill: white;">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></JFXTextField>
       <JFXButton fx:id="btnadduser" layoutX="993.0" layoutY="325.0" onAction="#btnadduserOnAction" style="-fx-background-color: #69d9f5;" text="Add User ➕">
          <font>
             <Font name="Comic Sans MS" size="13.0" />
@@ -64,7 +85,10 @@
             <TableColumn fx:id="colrole" minWidth="0.0" prefWidth="238.39996337890625" text="Role" />
          </columns>
       </TableView>
-      <JFXTextField fx:id="txtsearch" layoutX="102.0" layoutY="361.0" prefHeight="26.0" prefWidth="282.0" />
+      <JFXTextField fx:id="txtsearch" layoutX="102.0" layoutY="361.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></JFXTextField>
       <JFXButton fx:id="btnsearchuser" layoutX="395.0" layoutY="362.0" onAction="#btnsearchuserOnAction" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: yellow;" text="Search 🔍">
          <font>
             <Font name="Comic Sans MS" size="13.0" />
@@ -85,12 +109,12 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </JFXButton>
-      <JFXPasswordField fx:id="txtpassword1" layoutX="149.0" layoutY="217.0" prefHeight="26.0" prefWidth="230.0">
+      <JFXPasswordField fx:id="txtpassword1" layoutX="149.0" layoutY="217.0" prefHeight="26.0" prefWidth="230.0" style="-fx-text-fill: white;">
          <font>
             <Font size="15.0" />
          </font>
       </JFXPasswordField>
-      <JFXPasswordField fx:id="txtrepassword1" layoutX="655.0" layoutY="218.0" prefHeight="31.0" prefWidth="248.0">
+      <JFXPasswordField fx:id="txtrepassword1" layoutX="655.0" layoutY="218.0" prefHeight="31.0" prefWidth="248.0" style="-fx-text-fill: white;">
          <font>
             <Font size="15.0" />
          </font>
@@ -111,11 +135,11 @@
             <Image url="@../assest/eye.png" />
          </image>
       </ImageView>
-      <Label layoutX="1069.0" layoutY="230.0" text="Role : ">
+      <Label layoutX="1069.0" layoutY="230.0" text="Role : " textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="txtrole" layoutX="1145.0" layoutY="223.0" prefHeight="26.0" prefWidth="302.0" />
+      <JFXComboBox fx:id="txtrole" layoutX="1145.0" layoutY="223.0" prefHeight="26.0" prefWidth="302.0" style="-fx-text-fill: white;" />
    </children>
 </AnchorPane>

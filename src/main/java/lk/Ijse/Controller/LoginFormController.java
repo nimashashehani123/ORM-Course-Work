@@ -38,7 +38,7 @@ public class LoginFormController {
     @FXML
     void btnLogInOnAction(ActionEvent event) throws Exception {
         String username  = txtUsername.getText().trim();
-        String password = txtPassword1.getText().trim();
+        String password = txtPassword2.getText().trim();
         User userByname = userBO.findUserByname(username);
         String userid;
         String role;

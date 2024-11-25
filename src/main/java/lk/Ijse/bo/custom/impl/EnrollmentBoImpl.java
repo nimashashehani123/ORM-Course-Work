@@ -126,14 +126,10 @@ public class EnrollmentBoImpl implements EnrollmentBo {
     public boolean updateRemainingFee(String enrollmentId, double newFee) throws SQLException, ClassNotFoundException {
         return enrollmentDAO.updateRemainingFee(enrollmentId,newFee);
     }
-
-<<<<<<< HEAD
     @Override
     public int getEnrollmentCount() throws Exception {
         return enrollmentDAO.getEnrollmentCount();
     }
 
-=======
->>>>>>> ba2926686ce9f2363e122d8efaa8db882c9bbb6b
 
 }
