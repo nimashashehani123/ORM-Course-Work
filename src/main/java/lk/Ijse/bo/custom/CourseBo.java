@@ -19,5 +19,6 @@ public interface CourseBo extends SuperBo {
     public List<String> getAllCourseIds() throws SQLException, ClassNotFoundException;
     public Course getCourseById(String courseId) throws Exception;
     public Course findCourseById(String courseId) throws Exception;
+    public int getCourseCount() throws Exception;
 
 }

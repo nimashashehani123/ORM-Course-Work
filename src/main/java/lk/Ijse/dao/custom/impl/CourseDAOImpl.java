@@ -139,4 +139,20 @@ public class CourseDAOImpl implements CourseDAO {
         }
         return courseIds;
     }
+
+    @Override
+    public int getCourseCount() throws SQLException, ClassNotFoundException {
+        int courseCount = 0;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Query<Long> query = session.createQuery("SELECT COUNT(c) FROM Course c", Long.class);
+            Long result = query.uniqueResult();
+            if (result != null) {
+                courseCount = result.intValue();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SQLException("Failed to fetch course count from the database", e);
+        }
+        return courseCount;
+    }
 }

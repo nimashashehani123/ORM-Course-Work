@@ -21,5 +21,6 @@ public interface EnrollmentBo extends SuperBo {
     public Enrollment findEnrollmentById(String enrollmentId) throws Exception;
     public double getRemainingFeeByEnrollmentId(String enrollmentId) throws SQLException, ClassNotFoundException;
     public boolean updateRemainingFee(String enrollmentId, double newFee) throws SQLException, ClassNotFoundException;
+    public int getEnrollmentCount() throws Exception;
 
 }

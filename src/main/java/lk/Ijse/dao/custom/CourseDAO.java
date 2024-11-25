@@ -11,4 +11,5 @@ public interface CourseDAO extends CrudDAO<Course> {
     public Course getCourseById(String courseId) throws Exception;
     public Course findCourseById(String courseId) throws Exception;
     public List<String> getAllCourseIds() throws SQLException, ClassNotFoundException;
+    public int getCourseCount() throws SQLException, ClassNotFoundException;
 }

@@ -74,4 +74,9 @@ public class StudentBoImpl implements StudentBo {
         return studentDAO.findStudentById(studentId);
     }
 
+    @Override
+    public int getStudentCount() throws Exception {
+        return studentDAO.getStudentCount();
+    }
+
 }

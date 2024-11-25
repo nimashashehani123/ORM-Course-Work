@@ -69,5 +69,8 @@ public class CourseBoImpl implements CourseBo {
     public Course findCourseById(String courseId) throws Exception {
         return courseDAO.findCourseById(courseId);
     }
+    public int getCourseCount() throws Exception {
+        return courseDAO.getCourseCount();
+    }
 
 }

@@ -12,4 +12,5 @@ public interface StudentDAO extends CrudDAO<Student> {
     public Student getStudentById(String studentId) throws Exception;
     public Student findStudentById(String studentId) throws Exception;
     public List<String> getAllStudentIds() throws SQLException, ClassNotFoundException;
+    public int getStudentCount() throws SQLException, ClassNotFoundException;
 }

@@ -127,5 +127,10 @@ public class EnrollmentBoImpl implements EnrollmentBo {
         return enrollmentDAO.updateRemainingFee(enrollmentId,newFee);
     }
 
+    @Override
+    public int getEnrollmentCount() throws Exception {
+        return enrollmentDAO.getEnrollmentCount();
+    }
+
 
 }

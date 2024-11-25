@@ -9,8 +9,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.Ijse.bo.BoFactory;
+import lk.Ijse.bo.custom.CourseBo;
+import lk.Ijse.bo.custom.EnrollmentBo;
+import lk.Ijse.bo.custom.StudentBo;
+import lk.Ijse.bo.custom.UserBo;
+import lk.Ijse.bo.custom.impl.CourseBoImpl;
+import lk.Ijse.bo.custom.impl.StudentBoImpl;
+import lk.Ijse.bo.custom.impl.UserBoImpl;
 
 import java.io.IOException;
 import java.net.URL;
@@ -55,7 +64,11 @@ public class DashboardController implements Initializable {
 
     @FXML
     private JFXTextField txtstudentcount;
-    private List<Node> originalMainformChildren;
+    ArrayList<Node> originalMainformChildren;
+    StudentBo studentBo = (StudentBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.Student);
+    CourseBo courseBo = (CourseBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.Course);
+    EnrollmentBo enrollmentBo = (EnrollmentBo) BoFactory.getBoFactory().getBo(BoFactory.BoType.Enrollment);
+
     private int role;
     private String userid;
     public void setRole(int role) {
@@ -118,10 +131,19 @@ public class DashboardController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        originalMainformChildren = new ArrayList<>(mainform.getChildren());
-        txtcoursescount.setText("10");
-        txtenrollmentcount.setText("5");
-        txtstudentcount.setText("20");
+         originalMainformChildren = new ArrayList<>(mainform.getChildren());
+        try {
+            int coursesCount = courseBo.getCourseCount();
+            int enrollmentCount = enrollmentBo.getEnrollmentCount();
+            int studentCount = studentBo.getStudentCount();
+            txtcoursescount.setText(String.valueOf(coursesCount));
+            txtenrollmentcount.setText(String.valueOf(enrollmentCount));
+            txtstudentcount.setText(String.valueOf(studentCount));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Failed to load counts from database.").show();
+        }
     }
 
     @FXML

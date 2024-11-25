@@ -212,4 +212,17 @@ public class EnrollmentDAOImpl implements EnrollmentDAO {
             throw e;
         }
     }
+
+    @Override
+    public int getEnrollmentCount() throws SQLException, ClassNotFoundException {
+        int enrollmentCount = 0;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Query<Long> query = session.createQuery("SELECT COUNT(e) FROM Enrollment e", Long.class);
+            enrollmentCount = query.uniqueResult().intValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SQLException("Failed to fetch enrollment count from the database", e);
+        }
+        return enrollmentCount;
+    }
 }

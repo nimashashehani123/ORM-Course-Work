@@ -4,20 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e581c10e-de07-41c9-9672-7408cf0aa569" name="Changes" comment="Payment is done!">
+    <list default="true" id="e581c10e-de07-41c9-9672-7408cf0aa569" name="Changes" comment="Profile &amp; change password is done!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/DashboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/LoginFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/LoginFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/SignUpFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/SignUpFormController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/UserBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/UserBo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/UserBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/UserBoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/UserDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/Profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/Profile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/SignUpForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/SignUpForm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/CourseBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/CourseBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/EnrollmentBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/EnrollmentBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/StudentBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/StudentBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/CourseBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/CourseBoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/EnrollmentBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/EnrollmentBoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/StudentBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/StudentBoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/CourseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/CourseDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/EnrollmentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/EnrollmentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/StudentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/CourseDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/CourseDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/EnrollmentDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/EnrollmentDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/StudentDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/StudentDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/LoginForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/LoginForm.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +135,7 @@
       <workItem from="1732163559908" duration="306000" />
       <workItem from="1732341852203" duration="305000" />
       <workItem from="1732428104894" duration="21200000" />
-      <workItem from="1732511738086" duration="25114000" />
+      <workItem from="1732511738086" duration="28898000" />
     </task>
     <task id="LOCAL-00001" summary="develop UI for Loading,LoginForm,SignUpForm">
       <created>1730564508452</created>
@@ -183,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732512402198</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Profile &amp; change password is done!">
+      <created>1732541823850</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732541823850</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +218,7 @@
     <MESSAGE value="Student is Done!" />
     <MESSAGE value="fixed some bug in student!" />
     <MESSAGE value="Payment is done!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Payment is done!" />
+    <MESSAGE value="Profile &amp; change password is done!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Profile &amp; change password is done!" />
   </component>
 </project>

@@ -135,4 +135,17 @@ public class StudentDAOImpl implements StudentDAO {
         }
         return studentIds;
     }
+
+    @Override
+    public int getStudentCount() throws SQLException, ClassNotFoundException {
+        int studentCount = 0;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Query<Long> query = session.createQuery("SELECT COUNT(s) FROM Student s", Long.class);
+            studentCount = query.uniqueResult().intValue();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SQLException("Failed to fetch student count from the database", e);
+        }
+        return studentCount;
+    }
 }

@@ -61,7 +61,7 @@
             <Font name="Comic Sans MS" size="17.0" />
          </font>
       </JFXPasswordField>
-      <Label layoutX="532.0" layoutY="325.0" text="Forgot Password?" textFill="#ffd103">
+      <Label layoutX="532.0" layoutY="325.0" onMouseClicked="#forgotpwonclick" text="Forgot Password?" textFill="#ffd103">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
