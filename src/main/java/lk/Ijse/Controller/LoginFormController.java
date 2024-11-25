@@ -133,36 +133,5 @@ public class LoginFormController {
         }
     }
 
-   /* // Generate a random reset token (this can be enhanced)
-    private String generateResetToken() {
-        // Simple UUID as token
-        return UUID.randomUUID().toString();
-    }
-
-    // Save the reset token in the database (You'll need a method to do this)
-    private void saveResetToken(String userId, String resetToken) throws SQLException {
-        // Save the token to the database with the userId
-        // Assuming you have a 'reset_tokens' table or similar to store tokens temporarily.
-        // Example query to save the token in the database
-        String query = "INSERT INTO reset_tokens (user_id, reset_token) VALUES (?, ?)";
-        try (Connection connection = Database.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, userId);
-            statement.setString(2, resetToken);
-            statement.executeUpdate();
-        }
-    }
-
-    // Send the reset email with the token (replace with actual email sending code)
-    private void sendResetEmail(String email, String resetToken) {
-        String resetLink = "https://yourwebsite.com/reset-password?token=" + resetToken;
-        String subject = "Password Reset Request";
-        String content = "Click the link to reset your password: " + resetLink;
-
-        // Use JavaMail or a similar library to send the email
-        // (Email sending logic here)
-
-        System.out.println("Sent password reset email to: " + email);
-    }*/
 
 }
