@@ -63,4 +63,15 @@ public class StudentBoImpl implements StudentBo {
         }
         return studentIds;
     }
+
+    @Override
+    public Student getStudentById(String studentId) throws Exception {
+        return studentDAO.getStudentById(studentId);
+    }
+
+    @Override
+    public Student findStudentById(String studentId) throws Exception {
+        return studentDAO.findStudentById(studentId);
+    }
+
 }

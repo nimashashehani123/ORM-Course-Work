@@ -10,6 +10,7 @@ import lk.Ijse.dto.StudentDTO;
 import lk.Ijse.entity.Course;
 import lk.Ijse.entity.Enrollment;
 import lk.Ijse.entity.Student;
+import lk.Ijse.entity.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,16 +24,26 @@ public class EnrollmentBoImpl implements EnrollmentBo {
 
     @Override
     public boolean saveEnrollment(EnrollmentDTO dto) throws Exception {
+
         Student student = studentDAO.findStudentById(dto.getSid());
         Course course = courseDAO.findCourseById(dto.getCid());
+
 
         if (student == null || course == null) {
             throw new Exception("Student or Course not found.");
         }
 
-        Enrollment enrollment = new Enrollment(dto.getEid(), student, course, dto.getDate(),dto.getRemainingfee(), dto.getComment());
-        return enrollmentDAO.save(enrollment);
+        Enrollment enrollment = new Enrollment(
+                dto.getEid(),
+                student,
+                course,
+                dto.getDate(),
+                dto.getUpfrontpayment(),
+                dto.getRemainingfee(),
+                dto.getComment()
+        );
 
+        return enrollmentDAO.save(enrollment);
     }
 
     @Override
@@ -44,7 +55,16 @@ public class EnrollmentBoImpl implements EnrollmentBo {
             throw new Exception("Student or Course not found.");
         }
 
-        Enrollment enrollment = new Enrollment(dto.getEid(), student, course, dto.getDate(),dto.getRemainingfee(), dto.getComment());
+        Enrollment enrollment = new Enrollment(
+                dto.getEid(),
+                student,
+                course,
+                dto.getDate(),
+                dto.getUpfrontpayment(),
+                dto.getRemainingfee(),
+                dto.getComment()
+        );
+
         return enrollmentDAO.update(enrollment);
     }
 
@@ -86,4 +106,26 @@ public class EnrollmentBoImpl implements EnrollmentBo {
         }
         return enrollmentIds;
     }
+
+    @Override
+    public boolean isStudentEnrolledInCourse(String studentId, String courseId) throws Exception {
+        return enrollmentDAO.isStudentEnrolledInCourse(studentId,courseId);
+    }
+
+    @Override
+    public Enrollment findEnrollmentById(String enrollmentId) throws Exception {
+        return enrollmentDAO.findEnrollmentById(enrollmentId);
+    }
+
+    @Override
+    public double getRemainingFeeByEnrollmentId(String enrollmentId) throws SQLException, ClassNotFoundException {
+        return enrollmentDAO.getRemainingFeeByEnrollmentId(enrollmentId);
+    }
+
+    @Override
+    public boolean updateRemainingFee(String enrollmentId, double newFee) throws SQLException, ClassNotFoundException {
+        return enrollmentDAO.updateRemainingFee(enrollmentId,newFee);
+    }
+
+
 }

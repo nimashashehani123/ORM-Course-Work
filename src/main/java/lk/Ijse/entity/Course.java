@@ -1,9 +1,6 @@
 package lk.Ijse.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -22,8 +19,18 @@ public class Course {
     private String duration;
     private Double fee;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Enrollment> enrollmentList = new ArrayList<>();
+
+    public void addEnrollment(Enrollment enrollment) {
+        enrollmentList.add(enrollment);
+        enrollment.setCourse(this);  // This ensures the enrollment knows about the course
+    }
+
+    public void removeEnrollment(Enrollment enrollment) {
+        enrollmentList.remove(enrollment);
+        enrollment.setCourse(null); // Break the relationship
+    }
 
     public Course(String cid, String coursename, String duration, Double fee) {
         this.cid = cid;

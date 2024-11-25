@@ -12,4 +12,10 @@ public class PaymentTm {
     private Double amount;
     private LocalDate date;
 
+    public PaymentTm(String id, Double amount, String eid, LocalDate date) {
+        this.id = id;
+        this.amount = amount;
+        this.eid = eid;
+        this.date = date;
+    }
 }

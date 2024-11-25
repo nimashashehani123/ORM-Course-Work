@@ -13,14 +13,13 @@ import java.time.LocalDate;
 @Entity
 public class Payment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Change to Long for auto-incrementing
-
-    private Double amount;
+    private String id;
 
     @ManyToOne
-    @JoinColumn(name = "enrollment_id")
-    private Enrollment enrollment; // Many-to-One relationship to Enrollment
+    @JoinColumn(name = "eid")
+    private Enrollment enrollment;
+
+    private Double amount;
 
     private LocalDate date;
 }
