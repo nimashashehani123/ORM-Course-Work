@@ -3,7 +3,6 @@ package lk.Ijse.dao.custom.impl;
 import lk.Ijse.config.FactoryConfiguration;
 import lk.Ijse.dao.custom.StudentDAO;
 import lk.Ijse.entity.Student;
-import lk.Ijse.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -87,6 +86,23 @@ public class StudentDAOImpl implements StudentDAO {
             query.setParameter("id", id);
             Long count = query.uniqueResult();
             return count != null && count > 0;
+        }
+    }
+
+    @Override
+    public Student getStudentById(String studentId) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction tx = session.beginTransaction();
+
+        try {
+            Student student = session.get(Student.class, studentId);
+            tx.commit();
+            return student;
+        } catch (Exception e) {
+            tx.rollback();
+            throw e;
+        } finally {
+            session.close();
         }
     }
 

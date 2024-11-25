@@ -59,4 +59,15 @@ public class CourseBoImpl implements CourseBo {
         }
         return courseIds;
     }
+
+    @Override
+    public Course getCourseById(String courseId) throws Exception {
+        return courseDAO.getCourseById(courseId);
+    }
+
+    @Override
+    public Course findCourseById(String courseId) throws Exception {
+        return courseDAO.findCourseById(courseId);
+    }
+
 }

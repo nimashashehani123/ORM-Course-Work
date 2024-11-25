@@ -24,8 +24,18 @@ public class Student {
     @JoinColumn(name = "userid")
     private User user;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Enrollment> enrollmentList = new ArrayList<>();
+
+    public void addEnrollment(Enrollment enrollment) {
+        enrollmentList.add(enrollment);
+        enrollment.setStudent(this);
+    }
+
+    public void removeEnrollment(Enrollment enrollment) {
+        enrollmentList.remove(enrollment);
+        enrollment.setStudent(null);
+    }
 
     public Student(String sid, String name, String address, String tel, String email, User user) {
         this.sid = sid;

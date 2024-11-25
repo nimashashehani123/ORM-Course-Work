@@ -108,4 +108,31 @@ public class UserDAOImpl implements UserDAO {
 
         return user;
     }
+
+    @Override
+    public User findUserByname(String username) throws Exception {
+        Transaction transaction = null;
+        User user = null;
+
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+
+            Query<User> query = session.createQuery("FROM User u WHERE u.username = :username", User.class);
+            query.setParameter("username", username);
+            user = query.uniqueResult();
+
+            if (user == null) {
+                System.out.println("No user found with username: " + username);
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw e;
+        }
+
+        return user;
+    }
 }

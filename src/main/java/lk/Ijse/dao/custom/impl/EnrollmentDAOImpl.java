@@ -2,6 +2,7 @@ package lk.Ijse.dao.custom.impl;
 
 import lk.Ijse.config.FactoryConfiguration;
 import lk.Ijse.dao.custom.EnrollmentDAO;
+import lk.Ijse.entity.Course;
 import lk.Ijse.entity.Enrollment;
 import lk.Ijse.entity.Student;
 import org.hibernate.Session;
@@ -19,6 +20,16 @@ public class EnrollmentDAOImpl implements EnrollmentDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction tx = session.beginTransaction();
         session.save(entity);
+
+        Student student = entity.getStudent();
+        Course course = entity.getCourse();
+        if (student != null) {
+            student.addEnrollment(entity);
+        }
+        if (course != null) {
+            course.addEnrollment(entity);
+        }
+
         tx.commit();
         session.close();
         return true;
@@ -26,12 +37,12 @@ public class EnrollmentDAOImpl implements EnrollmentDAO {
 
     @Override
     public boolean update(Enrollment entity) throws Exception {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction tx = session.beginTransaction();
-        session.update(entity);
-        tx.commit();
-        session.close();
-        return true;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Transaction tx = session.beginTransaction();
+            session.update(entity);
+            tx.commit();
+            return true;
+        }
     }
 
     @Override
@@ -39,16 +50,31 @@ public class EnrollmentDAOImpl implements EnrollmentDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction tx = session.beginTransaction();
 
-        Enrollment enrollment = session.get(Enrollment.class, ID);
-        if (enrollment != null) {
-            session.delete(enrollment);
-            tx.commit();
-            session.close();
-            return true;
-        } else {
+        try {
+            Enrollment enrollment = session.get(Enrollment.class, ID);
+            if (enrollment != null) {
+                Student student = enrollment.getStudent();
+                Course course = enrollment.getCourse();
+
+                if (student != null) {
+                    student.removeEnrollment(enrollment);
+                }
+                if (course != null) {
+                    course.removeEnrollment(enrollment);
+                }
+
+                session.delete(enrollment);
+                tx.commit();
+                return true;
+            } else {
+                tx.rollback();
+                return false;
+            }
+        } catch (Exception e) {
             tx.rollback();
+            throw e;
+        } finally {
             session.close();
-            return false;
         }
     }
 
@@ -57,7 +83,7 @@ public class EnrollmentDAOImpl implements EnrollmentDAO {
         List<Enrollment> all = new ArrayList<>();
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        all = session.createQuery("from Enrollment").list();
+        all = session.createQuery("from Enrollment", Enrollment.class).list();
         transaction.commit();
         session.close();
         return all;
@@ -98,5 +124,92 @@ public class EnrollmentDAOImpl implements EnrollmentDAO {
             enrollmentIds = query.list();
         }
         return enrollmentIds;
+    }
+
+    public boolean isStudentEnrolledInCourse(String studentId, String courseId) throws Exception {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            String hql = "SELECT COUNT(e) FROM Enrollment e WHERE e.student.sid = :studentId AND e.course.cid = :courseId";
+            Long count = (Long) session.createQuery(hql)
+                    .setParameter("studentId", studentId)
+                    .setParameter("courseId", courseId)
+                    .uniqueResult();
+            return count > 0; // true if the student is already enrolled
+        }
+    }
+
+    @Override
+    public Enrollment findEnrollmentById(String enrollmentId) throws Exception {
+        Transaction transaction = null;
+        Enrollment enrollment = null;
+
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+
+            Query<Enrollment> query = session.createQuery("FROM Enrollment e WHERE e.id = :id", Enrollment.class);
+            query.setParameter("id", enrollmentId);
+            enrollment = query.uniqueResult();
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            throw e;
+        }
+
+        return enrollment;
+    }
+
+    @Override
+    public double getRemainingFeeByEnrollmentId(String enrollmentId) throws SQLException, ClassNotFoundException {
+        Transaction transaction = null;
+        Double remainFee = null;
+
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+
+            Query<Enrollment> query = session.createQuery("FROM Enrollment e WHERE e.id = :id", Enrollment.class);
+            query.setParameter("id", enrollmentId);
+            Enrollment enrollment = query.uniqueResult();
+
+            transaction.commit();
+
+
+            if (enrollment != null) {
+                remainFee = enrollment.getRemainingfee();
+            } else {
+                throw new Exception("Enrollment ID not found!");
+            }
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            try {
+                throw e;
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
+        return remainFee;
+    }
+
+    @Override
+    public boolean updateRemainingFee(String enrollmentId, double newFee) throws SQLException, ClassNotFoundException {
+        Transaction transaction = null;
+
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+
+
+            Query query = session.createQuery("UPDATE Enrollment e SET e.remainingfee = :newFee WHERE e.id = :id");
+            query.setParameter("newFee", newFee);
+            query.setParameter("id", enrollmentId);
+
+            int result = query.executeUpdate();
+
+            transaction.commit();
+
+            return result > 0;
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            throw e;
+        }
     }
 }

@@ -54,4 +54,9 @@ public class UserBoImpl implements UserBo {
     public User findUserById(String userId) throws Exception {
         return userDAO.findUserById(userId);
     }
+
+    @Override
+    public User findUserByname(String username) throws Exception {
+        return userDAO.findUserByname(username);
+    }
 }

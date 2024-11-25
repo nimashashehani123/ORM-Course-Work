@@ -229,25 +229,34 @@ public class UserController implements Initializable {
 
     @FXML
     void btnupdateOnAction(ActionEvent event) throws Exception {
-        String name = txtusername.getText();
-        String password = txtrepassword1.getText();
+        String userid = txtuserid.getText().trim();
+        String name = txtusername.getText().trim();
+        String password = txtpassword1.getText();
         String repassword = txtrepassword1.getText();
-        String email = txtemail.getText();
+        String email = txtemail.getText().trim();
         String role = txtrole.getValue();
+        User userById = userBO.findUserById(userid);
 
-        String encryptedrePassword = PasswordEncrypt.hashPassword(repassword);
+        String hashpassword = PasswordEncrypt.hashPassword(password);
+        String hashrepassword = PasswordEncrypt.hashPassword(repassword);
 
-        if (PasswordVerifier.verifyPassword(password, encryptedrePassword)) {
-            if(userBO.updateUser(new UserDTO(ID,name,encryptedrePassword,email,role))){
-                new Alert(Alert.AlertType.CONFIRMATION, "Update Successfully!!").show();
-            }else {
-                new Alert(Alert.AlertType.ERROR, "Error!!").show();
+        if (!password.isEmpty() && !repassword.isEmpty()) {
+            if (!password.equals(repassword) & !PasswordVerifier.verifyPassword(repassword,hashpassword) & !PasswordVerifier.verifyPassword(repassword,hashrepassword)){
+                new Alert(Alert.AlertType.WARNING, "Passwords do not match! Please re-enter your password.").show();
+                return;
             }
-        }else{
-            new Alert(Alert.AlertType.ERROR, "Don't match Passwords!!").show();
         }
+
+        if (userBO.updateUser(new UserDTO(ID, name, hashrepassword, email, role))) {
+            new Alert(Alert.AlertType.INFORMATION, "User updated successfully!").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Failed to update user! Please try again.").show();
+        }
+
+
         clearTextFileds();
         getAll();
+
     }
 
 
@@ -283,12 +292,12 @@ public class UserController implements Initializable {
         if (index <= -1) {
             return;
         }
-        ID = coluserid.getCellData(index).toString();
+        ID = String.valueOf(coluserid.getCellData(index));
         txtuserid.setText(ID);
-        txtusername.setText(colusername.getCellData(index).toString());
-        txtpassword1.setText(colpassword.getCellData(index).toString());
-        txtrepassword1.setText(colpassword.getCellData(index).toString());
-        txtemail.setText(colemail.getCellData(index).toString());
-        txtrole.setValue(colrole.getCellData(index).toString());
+        txtusername.setText(String.valueOf(colusername.getCellData(index)));
+        txtpassword1.setText(String.valueOf(colpassword.getCellData(index)));
+        txtrepassword1.setText(String.valueOf(colpassword.getCellData(index)));
+        txtemail.setText(String.valueOf(colemail.getCellData(index)));
+        txtrole.setValue(String.valueOf(colrole.getCellData(index)));
     }
 }

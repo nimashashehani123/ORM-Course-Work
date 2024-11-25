@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e581c10e-de07-41c9-9672-7408cf0aa569" name="Changes" comment="fixed some bug in student!">
+    <list default="true" id="e581c10e-de07-41c9-9672-7408cf0aa569" name="Changes" comment="Payment is done!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/CourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/LodingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/LodingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/CourseBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/CourseBo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/CourseBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/CourseBoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/CourseDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/CourseDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/entity/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/view/Course.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/Course.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/LoginFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/LoginFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/SignUpFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/SignUpFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/UserBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/UserBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/UserBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/bo/custom/impl/UserBoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/UserDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/Ijse/dao/custom/impl/UserDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/Profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/Profile.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/SignUpForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/SignUpForm.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +36,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -109,6 +117,22 @@
       <workItem from="1730726362911" duration="5789000" />
       <workItem from="1730778636834" duration="4842000" />
       <workItem from="1730784500186" duration="34798000" />
+      <workItem from="1730859967716" duration="323000" />
+      <workItem from="1730860405307" duration="10838000" />
+      <workItem from="1730890657009" duration="2964000" />
+      <workItem from="1730974757407" duration="5258000" />
+      <workItem from="1731211792785" duration="463000" />
+      <workItem from="1731394408701" duration="599000" />
+      <workItem from="1731508966417" duration="537000" />
+      <workItem from="1731574687829" duration="595000" />
+      <workItem from="1731663720730" duration="598000" />
+      <workItem from="1731677401985" duration="21000" />
+      <workItem from="1731991688047" duration="68000" />
+      <workItem from="1732081786668" duration="90000" />
+      <workItem from="1732163559908" duration="306000" />
+      <workItem from="1732341852203" duration="305000" />
+      <workItem from="1732428104894" duration="21200000" />
+      <workItem from="1732511738086" duration="25114000" />
     </task>
     <task id="LOCAL-00001" summary="develop UI for Loading,LoginForm,SignUpForm">
       <created>1730564508452</created>
@@ -152,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1730819330120</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Payment is done!">
+      <created>1732512402198</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732512402198</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +207,7 @@
     <MESSAGE value="User is Done!" />
     <MESSAGE value="Student is Done!" />
     <MESSAGE value="fixed some bug in student!" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed some bug in student!" />
+    <MESSAGE value="Payment is done!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Payment is done!" />
   </component>
 </project>

@@ -90,6 +90,25 @@ public class CourseDAOImpl implements CourseDAO {
         }
     }
 
+
+
+    public Course getCourseById(String courseId) throws Exception {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction tx = session.beginTransaction();
+
+        try {
+            // Fetch the course object based on the ID
+            Course course = session.get(Course.class, courseId);
+            tx.commit();  // Commit the transaction
+            return course;
+        } catch (Exception e) {
+            tx.rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
+    }
+
     @Override
     public Course findCourseById(String courseId) throws Exception {
         Transaction transaction = null;

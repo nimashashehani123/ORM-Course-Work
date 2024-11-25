@@ -5,18 +5,35 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import lk.Ijse.Utill.PasswordEncrypt;
+import lk.Ijse.Utill.PasswordVerifier;
+import lk.Ijse.bo.BoFactory;
+import lk.Ijse.bo.custom.UserBo;
+import lk.Ijse.bo.custom.impl.UserBoImpl;
+import lk.Ijse.dto.UserDTO;
 
-public class SignUpFormController {
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+public class SignUpFormController implements Initializable {
+    @FXML
+    private AnchorPane signupform;
 
     @FXML
-    private JFXPasswordField txtPassword1;
+    private JFXTextField txtPassword1;
 
     @FXML
     private JFXPasswordField txtPassword2;
 
     @FXML
-    private JFXPasswordField txtRePassword1;
+    private JFXTextField txtRePassword1;
 
     @FXML
     private JFXPasswordField txtRePassword2;
@@ -31,36 +48,108 @@ public class SignUpFormController {
     private JFXTextField txtUsername;
 
     @FXML
-    private JFXComboBox<?> txtrole;
+    private JFXComboBox<String> txtrole;
 
-    @FXML
-    void btnSignUpOnAction(ActionEvent event) {
+    UserBo userBO = (UserBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.User);
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        clearTextFileds();
+        txtPassword1.setVisible(false);
+        txtRePassword1.setVisible(false);
+        txtrole.getItems().addAll("admin", "coordinator");
+    }
+
+    private void generateNextUserId() {
+
+        String nextId = null;
+        try {
+            nextId = userBO.generateNewUserID();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        txtUserID.setText(nextId);
 
     }
 
     @FXML
-    void lblHaveAccountOnMouseClicked(MouseEvent event) {
+    void btnSignUpOnAction(ActionEvent event) throws Exception {
+        String id = txtUserID.getText();
+        String name = txtUsername.getText();
+        String password = txtPassword2.getText();
+        String repassword = txtRePassword2.getText();
+        String email = txtUserEmail.getText();
+        String role = (String) txtrole.getValue();
 
+        if (userBO.UserIdExists(id)) {
+            new Alert(Alert.AlertType.ERROR, "User ID " + id + " already exists!").show();
+            return;
+        }
+        String encryptedrePassword = PasswordEncrypt.hashPassword(repassword);
+
+
+        if (PasswordVerifier.verifyPassword(password, encryptedrePassword)) {
+            if (userBO.saveUser(new UserDTO(id, name, encryptedrePassword, email,role))) {
+                clearTextFileds();
+                new Alert(Alert.AlertType.INFORMATION, "Sign-up successful! Your account has been created!!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Sign-up failed! Please try again later!!").show();
+            }
+        }else {
+            new Alert(Alert.AlertType.WARNING, "Passwords do not match! Please re-enter your password!!").show();
+        }
+
+    }
+    private void clearTextFileds() {
+        txtUserID.clear();
+        txtUserEmail.clear();
+        txtUsername.clear();
+        txtPassword2.clear();
+        txtPassword1.clear();
+        txtRePassword2.clear();
+        txtRePassword1.clear();
+        txtrole.getSelectionModel().clearSelection();
+        generateNextUserId();
+    }
+    @FXML
+    void lblHaveAccountOnMouseClicked(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoginForm.fxml"));
+            AnchorPane coursesPane = loader.load();
+            signupform.getChildren().setAll(coursesPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void showPassword2OnMousePresseds(MouseEvent event) {
-
+        txtRePassword2.setVisible(false);
+        txtRePassword1.setText(txtRePassword2.getText());
+        txtRePassword1.setVisible(true);
     }
 
     @FXML
     void showPassword2OnMouseReleased(MouseEvent event) {
-
+        txtRePassword2.setVisible(true);
+        txtRePassword1.setVisible(false);
     }
 
     @FXML
     void showPasswordOnMousePresseds(MouseEvent event) {
-
+        txtPassword2.setVisible(false);
+        txtPassword1.setText(txtPassword2.getText());
+        txtPassword1.setVisible(true);
     }
 
     @FXML
     void showPasswordOnMouseReleased(MouseEvent event) {
-
+        txtPassword2.setVisible(true);
+        txtPassword1.setVisible(false);
     }
 
     @FXML

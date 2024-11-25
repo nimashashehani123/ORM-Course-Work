@@ -16,5 +16,6 @@ public interface UserBo extends SuperBo {
     public String generateNewUserID() throws SQLException, ClassNotFoundException, IOException;
     public boolean UserIdExists(String userId) throws SQLException, ClassNotFoundException;
     public User findUserById(String userId) throws Exception;
+    public User findUserByname(String username) throws Exception;
 
 }

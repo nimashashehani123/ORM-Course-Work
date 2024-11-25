@@ -3,6 +3,7 @@ package lk.Ijse.bo.custom;
 import lk.Ijse.bo.SuperBo;
 import lk.Ijse.dto.StudentDTO;
 import lk.Ijse.dto.UserDTO;
+import lk.Ijse.entity.Student;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -16,4 +17,6 @@ public interface StudentBo extends SuperBo {
     public String generateNewStudentID() throws SQLException, ClassNotFoundException, IOException;
     public boolean StudentIdExists(String studentId) throws SQLException, ClassNotFoundException;
     public List<String> getAllStudentIds() throws SQLException, ClassNotFoundException;
+    public Student getStudentById(String studentId) throws Exception;
+    public Student findStudentById(String studentId) throws Exception;
 }

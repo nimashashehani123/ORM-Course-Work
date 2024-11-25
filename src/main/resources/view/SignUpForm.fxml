@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.Controller.SignUpFormController">
+<AnchorPane fx:id="signupform" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.Ijse.Controller.SignUpFormController">
    <children>
       <ImageView fitHeight="523.0" fitWidth="418.0" layoutX="53.0" layoutY="53.0" pickOnBounds="true">
          <image>
@@ -74,14 +74,6 @@
                </font>
             </Label>
             <JFXComboBox fx:id="txtrole" focusColor="#ffdc00" layoutX="68.0" layoutY="425.0" onAction="#txtroleOnAction" prefHeight="26.0" prefWidth="282.0" unFocusColor="WHITE" />
-            <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="316.0" layoutY="233.0" onMousePressed="#showPasswordOnMousePresseds" onMouseReleased="#showPasswordOnMouseReleased" pickOnBounds="true" preserveRatio="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <image>
-                  <Image url="@../assest/eye.png" />
-               </image>
-            </ImageView>
          </children>
       </AnchorPane>
       <Line endX="460.9999694824219" endY="42.0" layoutX="10.0" layoutY="10.0" startX="42.9999885559082" startY="42.0" strokeWidth="4.0" />
@@ -98,16 +90,34 @@
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </JFXTextField>
+      <JFXTextField fx:id="txtPassword1" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="254.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </JFXTextField>
       <JFXPasswordField fx:id="txtPassword2" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="253.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </JFXPasswordField>
+      <ImageView fitHeight="27.0" fitWidth="31.0" layoutX="799.0" layoutY="256.0" onMousePressed="#showPasswordOnMousePresseds" onMouseReleased="#showPasswordOnMouseReleased" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@../assest/eye.png" />
+         </image>
+      </ImageView>
       <Button layoutX="550.0" layoutY="523.0" mnemonicParsing="false" onAction="#btnSignUpOnAction" prefHeight="34.0" prefWidth="282.0" styleClass="LoginBtn" stylesheets="@../style/styel.css" text="SignUp" textFill="WHITE">
          <font>
             <Font name="Comic Sans MS Bold" size="17.0" />
          </font>
       </Button>
+      <JFXTextField fx:id="txtRePassword1" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="313.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </JFXTextField>
       <JFXPasswordField fx:id="txtRePassword2" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="313.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
          <font>
             <Font size="15.0" />
@@ -142,15 +152,5 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </Label>
-      <JFXPasswordField fx:id="txtPassword1" focusColor="#ffdc00" labelFloat="true" layoutX="551.0" layoutY="253.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </JFXPasswordField>
-      <JFXPasswordField fx:id="txtRePassword1" focusColor="#ffdc00" labelFloat="true" layoutX="552.0" layoutY="313.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </JFXPasswordField>
    </children>
 </AnchorPane>
