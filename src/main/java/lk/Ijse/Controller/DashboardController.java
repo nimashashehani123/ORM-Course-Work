@@ -6,10 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+<<<<<<< HEAD
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+=======
+>>>>>>> ba2926686ce9f2363e122d8efaa8db882c9bbb6b
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.Ijse.bo.BoFactory;
@@ -23,8 +26,11 @@ import lk.Ijse.bo.custom.impl.UserBoImpl;
 
 import java.io.IOException;
 import java.net.URL;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
+=======
+>>>>>>> ba2926686ce9f2363e122d8efaa8db882c9bbb6b
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -69,6 +75,7 @@ public class DashboardController implements Initializable {
     CourseBo courseBo = (CourseBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.Course);
     EnrollmentBo enrollmentBo = (EnrollmentBo) BoFactory.getBoFactory().getBo(BoFactory.BoType.Enrollment);
 
+<<<<<<< HEAD
     private int role;
     private String userid;
     public void setRole(int role) {
@@ -143,6 +150,23 @@ public class DashboardController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "Failed to load counts from database.").show();
+=======
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtcoursescount.setText("10");
+        txtenrollmentcount.setText("5");
+        txtstudentcount.setText("20");
+    }
+
+    @FXML
+    void btncoursesOnAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Course.fxml"));
+            AnchorPane coursesPane = loader.load();
+            mainform.getChildren().setAll(coursesPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+>>>>>>> ba2926686ce9f2363e122d8efaa8db882c9bbb6b
         }
     }
 

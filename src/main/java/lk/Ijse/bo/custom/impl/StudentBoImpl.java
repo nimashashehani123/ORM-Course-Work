@@ -74,9 +74,12 @@ public class StudentBoImpl implements StudentBo {
         return studentDAO.findStudentById(studentId);
     }
 
+<<<<<<< HEAD
     @Override
     public int getStudentCount() throws Exception {
         return studentDAO.getStudentCount();
     }
 
+=======
+>>>>>>> ba2926686ce9f2363e122d8efaa8db882c9bbb6b
 }

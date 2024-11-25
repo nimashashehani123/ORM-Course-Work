@@ -13,6 +13,9 @@ public interface EnrollmentDAO extends CrudDAO<Enrollment> {
     public Enrollment findEnrollmentById(String enrollmentId) throws Exception;
     public double getRemainingFeeByEnrollmentId(String enrollmentId) throws SQLException, ClassNotFoundException;
     public boolean updateRemainingFee(String enrollmentId, double newFee) throws SQLException, ClassNotFoundException;
+<<<<<<< HEAD
     public int getEnrollmentCount() throws SQLException, ClassNotFoundException;
+=======
+>>>>>>> ba2926686ce9f2363e122d8efaa8db882c9bbb6b
 
 }

@@ -212,6 +212,7 @@ public class EnrollmentDAOImpl implements EnrollmentDAO {
             throw e;
         }
     }
+<<<<<<< HEAD
 
     @Override
     public int getEnrollmentCount() throws SQLException, ClassNotFoundException {
@@ -225,4 +226,6 @@ public class EnrollmentDAOImpl implements EnrollmentDAO {
         }
         return enrollmentCount;
     }
+=======
+>>>>>>> ba2926686ce9f2363e122d8efaa8db882c9bbb6b
 }
