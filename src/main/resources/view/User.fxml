@@ -31,7 +31,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtuserid" layoutX="148.0" layoutY="132.0" prefHeight="26.0" prefWidth="218.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtuserid" editable="false" layoutX="148.0" layoutY="132.0" onKeyReleased="#txtuseridOnKeyReleased" prefHeight="26.0" prefWidth="218.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -40,7 +40,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtusername" layoutX="657.0" layoutY="134.0" prefHeight="26.0" prefWidth="241.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtusername" layoutX="657.0" layoutY="134.0" onKeyReleased="#txtusernameOnKeyReleased" prefHeight="26.0" prefWidth="241.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -49,7 +49,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtemail" layoutX="1162.0" layoutY="132.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtemail" layoutX="1162.0" layoutY="132.0" onKeyReleased="#txtemailOnKeyReleased" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -85,7 +85,7 @@
             <TableColumn fx:id="colrole" minWidth="0.0" prefWidth="238.39996337890625" text="Role" />
          </columns>
       </TableView>
-      <JFXTextField fx:id="txtsearch" layoutX="102.0" layoutY="361.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtsearch" layoutX="102.0" layoutY="361.0" onKeyReleased="#txtsearchOnKeyReleased" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -109,12 +109,12 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </JFXButton>
-      <JFXPasswordField fx:id="txtpassword1" layoutX="149.0" layoutY="217.0" prefHeight="26.0" prefWidth="230.0" style="-fx-text-fill: white;">
+      <JFXPasswordField fx:id="txtpassword1" layoutX="149.0" layoutY="217.0" onKeyReleased="#txtpassword1OnKeyReleased" prefHeight="26.0" prefWidth="230.0" style="-fx-text-fill: white;">
          <font>
             <Font size="15.0" />
          </font>
       </JFXPasswordField>
-      <JFXPasswordField fx:id="txtrepassword1" layoutX="655.0" layoutY="218.0" prefHeight="31.0" prefWidth="248.0" style="-fx-text-fill: white;">
+      <JFXPasswordField fx:id="txtrepassword1" layoutX="655.0" layoutY="218.0" onKeyReleased="#txtrepassword1OnKeyReleased" prefHeight="31.0" prefWidth="248.0" style="-fx-text-fill: white;">
          <font>
             <Font size="15.0" />
          </font>
@@ -140,6 +140,6 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="txtrole" layoutX="1145.0" layoutY="223.0" prefHeight="26.0" prefWidth="302.0" style="-fx-text-fill: white;" />
+      <JFXComboBox fx:id="txtrole" editable="true" layoutX="1145.0" layoutY="223.0" prefHeight="26.0" prefWidth="302.0" style="-fx-text-fill: white;" styleClass="text-field" stylesheets="@../style/styel.css" />
    </children>
 </AnchorPane>

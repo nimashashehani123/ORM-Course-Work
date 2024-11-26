@@ -14,5 +14,4 @@ public class StudentDTO {
     private String address;
     private String tel;
     private String email;
-    private String userid;
 }

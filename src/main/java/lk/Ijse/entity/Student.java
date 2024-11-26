@@ -20,10 +20,6 @@ public class Student {
     private String tel;
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "userid")
-    private User user;
-
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Enrollment> enrollmentList = new ArrayList<>();
 
@@ -37,12 +33,11 @@ public class Student {
         enrollment.setStudent(null);
     }
 
-    public Student(String sid, String name, String address, String tel, String email, User user) {
+    public Student(String sid, String name, String address, String tel, String email) {
         this.sid = sid;
         this.name = name;
         this.address = address;
         this.tel = tel;
         this.email = email;
-        this.user = user;
     }
 }

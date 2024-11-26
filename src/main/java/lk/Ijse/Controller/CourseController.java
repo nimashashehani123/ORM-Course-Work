@@ -9,8 +9,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.Ijse.Utill.Regex;
+import lk.Ijse.Utill.TextField;
 import lk.Ijse.bo.BoFactory;
 import lk.Ijse.bo.custom.CourseBo;
 import lk.Ijse.bo.custom.StudentBo;
@@ -134,20 +137,33 @@ public class CourseController implements Initializable {
         String duration = txtduration.getText();
         Double fees = Double.valueOf(txtfees.getText());
 
-        if (courseBo.CourseIdExists(id)){
-            new Alert(Alert.AlertType.ERROR, "Course ID " + id + " already exists!").show();
+
+        int validationCode;
+        if (id.isEmpty() || name.isEmpty() || duration.isEmpty() || fees == null) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
+        }else {
+            validationCode = isValid();
         }
-
-        if (courseBo.saveCourse(new CourseDTO(id, name, duration, fees))) {
-            clearTextFileds();
-            generateNextUserId();
-            getAll();
-            new Alert(Alert.AlertType.CONFIRMATION, "Saved!!").show();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Error!!").show();
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid coursename!").show();
+            case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid duration!").show();
+            case 3 -> new Alert(Alert.AlertType.ERROR, "Invalid fees!").show();
+            default -> {
+                if (courseBo.CourseIdExists(id)){
+                    new Alert(Alert.AlertType.ERROR, "Course ID " + id + " already exists!").show();
+                    return;
+                }
+                if (courseBo.saveCourse(new CourseDTO(id, name, duration, fees))) {
+                    clearTextFileds();
+                    generateNextUserId();
+                    getAll();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Saved!!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                }
+            }
         }
-
     }
 
     private void clearTextFileds() {
@@ -170,8 +186,22 @@ public class CourseController implements Initializable {
         Optional<ButtonType> result = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
 
         if (result.orElse(no) == yes) {
-            if (!courseBo.deleteCourse(ID)) {
-                new Alert(Alert.AlertType.ERROR, "Error!!").show();
+            try {
+                if (courseBo.findCourseById(ID).getEnrollmentList() != null &&
+                        !courseBo.findCourseById(ID).getEnrollmentList().isEmpty()) {
+                    new Alert(Alert.AlertType.WARNING, "This course is enrolled by students, so it cannot be removed.").show();
+                    return;
+                }
+
+                if (!courseBo.deleteCourse(ID)) {
+                    new Alert(Alert.AlertType.ERROR, "Error occurred while deleting the course.").show();
+                } else {
+                    new Alert(Alert.AlertType.INFORMATION, "Course deleted successfully.").show();
+                }
+            } catch (NullPointerException e) {
+                new Alert(Alert.AlertType.ERROR, "Course not found.").show();
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR, "Unexpected error: " + e.getMessage()).show();
             }
         }
         generateNextUserId();
@@ -197,14 +227,27 @@ public class CourseController implements Initializable {
         String name = txtcoursename.getText();
         String duration = txtduration.getText();
         Double fees = Double.valueOf(txtfees.getText());
-
-        if(courseBo.updateCourse(new CourseDTO(ID,name,duration,fees))){
-            new Alert(Alert.AlertType.CONFIRMATION, "Update Successfully!!").show();
+        int validationCode;
+        if (ID.isEmpty() || name.isEmpty() || duration.isEmpty() || fees == null) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
+            return;
         }else {
-            new Alert(Alert.AlertType.ERROR, "Error!!").show();
+            validationCode = isValid();
         }
-        clearTextFileds();
-        getAll();
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid coursename!").show();
+            case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid duration!").show();
+            case 3 -> new Alert(Alert.AlertType.ERROR, "Invalid fees!").show();
+            default -> {
+                if (courseBo.updateCourse(new CourseDTO(ID, name, duration, fees))) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Update Successfully!!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                }
+                clearTextFileds();
+                getAll();
+            }
+        }
     }
 
     @FXML
@@ -218,6 +261,33 @@ public class CourseController implements Initializable {
         txtcoursename.setText(colcoursename.getCellData(index).toString());
         txtduration.setText(colduration.getCellData(index).toString());
         txtfees.setText(colfees.getCellData(index).toString());
+    }
+
+    @FXML
+    void txtcoursenameOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.NAME,txtcoursename);
+    }
+
+    @FXML
+    void txtdurationOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.DURATION,txtduration);
+    }
+
+    @FXML
+    void txtfeesOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.PRICE,txtfees);
+    }
+
+    @FXML
+    void txtscourseidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    public int isValid() {
+        if (!Regex.setTextColor(TextField.NAME, txtcoursename)) return 1;
+        if (!Regex.setTextColor(TextField.DURATION, txtduration)) return 2;
+        if (!Regex.setTextColor(TextField.PRICE, txtfees)) return 3;
+        return 0;
     }
 
 

@@ -28,7 +28,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtstudentid" layoutX="184.0" layoutY="122.0" prefHeight="26.0" prefWidth="218.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtstudentid" editable="false" layoutX="184.0" layoutY="122.0" onKeyReleased="#txtstudentidOnKeyReleased" prefHeight="26.0" prefWidth="218.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -37,7 +37,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtstudentname" layoutX="647.0" layoutY="124.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtstudentname" layoutX="647.0" layoutY="124.0" onKeyReleased="#txtstudentnameOnKeyReleased" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -46,7 +46,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtaddress" layoutX="1152.0" layoutY="122.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtaddress" layoutX="1152.0" layoutY="122.0" onKeyReleased="#txtaddressOnKeyReleased" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -55,7 +55,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txttel" layoutX="138.0" layoutY="211.0" prefHeight="26.0" prefWidth="281.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txttel" layoutX="138.0" layoutY="211.0" onKeyReleased="#txttelOnKeyReleased" prefHeight="26.0" prefWidth="281.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -64,7 +64,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtemail" layoutX="624.0" layoutY="212.0" prefHeight="26.0" prefWidth="303.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtemail" layoutX="624.0" layoutY="212.0" onKeyReleased="#txtemailOnKeyReleased" prefHeight="26.0" prefWidth="303.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -82,7 +82,7 @@
             <TableColumn fx:id="colemail" minWidth="0.0" prefWidth="398.39996337890625" text="Email" />
         </columns>
       </TableView>
-      <JFXTextField fx:id="txtsearch" layoutX="1087.0" layoutY="334.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtsearch" layoutX="1087.0" layoutY="334.0" onKeyReleased="#txtsearchOnKeyReleased" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>

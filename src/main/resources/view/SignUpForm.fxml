@@ -73,19 +73,19 @@
                   <Font name="Comic Sans MS" size="13.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="txtrole" focusColor="#ffdc00" layoutX="68.0" layoutY="425.0" onAction="#txtroleOnAction" prefHeight="26.0" prefWidth="282.0" unFocusColor="WHITE" />
+            <JFXComboBox fx:id="txtrole" editable="true" focusColor="#ffdc00" layoutX="68.0" layoutY="425.0" onAction="#txtroleOnAction" prefHeight="26.0" prefWidth="282.0" styleClass="text-field" stylesheets="@../style/styel.css" unFocusColor="WHITE" />
          </children>
       </AnchorPane>
       <Line endX="460.9999694824219" endY="42.0" layoutX="10.0" layoutY="10.0" startX="42.9999885559082" startY="42.0" strokeWidth="4.0" />
       <Line endX="33.00000762939453" endY="34.000003814697266" layoutX="20.0" layoutY="20.0" startX="33.00000762939453" startY="555.0" strokeWidth="4.0" />
       <Line endX="23.00000762939453" endY="536.7999877929688" layoutX="30.0" layoutY="30.0" startX="440.9999694824219" startY="536.7999877929688" strokeWidth="26.0" />
       <Line endX="440.9999694824219" endY="22.000003814697266" layoutX="30.0" layoutY="30.0" startX="440.9999694824219" startY="523.7999877929688" strokeWidth="4.0" />
-      <JFXTextField fx:id="txtUserID" disable="true" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="126.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtUserID" editable="false" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="126.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtUsername" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="189.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtUsername" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="189.0" onKeyReleased="#txtUsernameOnKeyReleased" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>
@@ -95,7 +95,7 @@
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="txtPassword2" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="253.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
+      <JFXPasswordField fx:id="txtPassword2" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="253.0" onKeyReleased="#txtPassword2OnKeyReleased" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -118,7 +118,7 @@
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="txtRePassword2" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="313.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
+      <JFXPasswordField fx:id="txtRePassword2" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="313.0" onKeyReleased="#txtRePassword2OnKeyReleased" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -139,7 +139,7 @@
             <Font name="Comic Sans MS Bold" size="13.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtUserEmail" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="375.0" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtUserEmail" focusColor="#ffdc00" labelFloat="true" layoutX="550.0" layoutY="375.0" onKeyReleased="#txtUserEmailOnKeyReleased" prefHeight="32.0" prefWidth="282.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>

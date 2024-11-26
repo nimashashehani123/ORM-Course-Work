@@ -11,10 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.Ijse.Utill.PasswordEncrypt;
 import lk.Ijse.Utill.PasswordVerifier;
+import lk.Ijse.Utill.Regex;
+import lk.Ijse.Utill.TextField;
 import lk.Ijse.bo.BoFactory;
 import lk.Ijse.bo.custom.UserBo;
 import lk.Ijse.bo.custom.impl.UserBoImpl;
@@ -159,24 +162,38 @@ public class UserController implements Initializable {
         String email = txtemail.getText();
         String role = (String) txtrole.getValue();
 
-        if (userBO.UserIdExists(id)) {
-            new Alert(Alert.AlertType.ERROR, "User ID " + id + " already exists!").show();
-            return; // Exit the method early
-        }
-        String encryptedrePassword = PasswordEncrypt.hashPassword(repassword);
-
-
-        if (PasswordVerifier.verifyPassword(password, encryptedrePassword)) {
-            if (userBO.saveUser(new UserDTO(id, name, encryptedrePassword, email,role))) {
-                clearTextFileds();
-                generateNextUserId();
-                getAll();
-                new Alert(Alert.AlertType.CONFIRMATION, "Saved!!").show();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Error!!").show();
-            }
+        int validationCode;
+        if (id.isEmpty() || name.isEmpty() || password.isEmpty() || repassword.isEmpty() || email.isEmpty() || role == null) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
+            return;
         }else {
-            new Alert(Alert.AlertType.ERROR, "Don't match Passwords!!").show();
+            validationCode = isValid();
+        }
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid username!").show();
+            case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid email format!").show();
+            case 3 -> new Alert(Alert.AlertType.ERROR, "Invalid password format!").show();
+            case 4 -> new Alert(Alert.AlertType.ERROR, "Invalid Repassword format!").show();
+            default -> {
+                if (userBO.UserIdExists(id)) {
+                    new Alert(Alert.AlertType.ERROR, "User ID " + id + " already exists!").show();
+                    return;
+                }
+                String encryptedrePassword = PasswordEncrypt.hashPassword(repassword);
+
+                if (PasswordVerifier.verifyPassword(password, encryptedrePassword)) {
+                    if (userBO.saveUser(new UserDTO(id, name, encryptedrePassword, email, role))) {
+                        clearTextFileds();
+                        generateNextUserId();
+                        getAll();
+                        new Alert(Alert.AlertType.CONFIRMATION, "Saved!!").show();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                    }
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Don't match Passwords!!").show();
+                }
+            }
         }
 
     }
@@ -191,6 +208,10 @@ public class UserController implements Initializable {
         txtemail.clear();
         txtrole.getSelectionModel().clearSelection();
         generateNextUserId();
+        txtpassword1.setEditable(true);
+        txtpassword.setEditable(true);
+        txtrepassword1.setEditable(true);
+        txtrepassword.setEditable(true);
     }
 
     @FXML
@@ -206,7 +227,9 @@ public class UserController implements Initializable {
 
         if (result.orElse(no) == yes) {
             if (!userBO.deleteUser(ID)) {
-                new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                new Alert(Alert.AlertType.ERROR, "An error occurred while deleting the user. Please try again.").show();
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "User has been successfully deleted.").show();
             }
         }
         generateNextUserId();
@@ -231,32 +254,33 @@ public class UserController implements Initializable {
     void btnupdateOnAction(ActionEvent event) throws Exception {
         String userid = txtuserid.getText().trim();
         String name = txtusername.getText().trim();
-        String password = txtpassword1.getText();
-        String repassword = txtrepassword1.getText();
         String email = txtemail.getText().trim();
         String role = txtrole.getValue();
-        User userById = userBO.findUserById(userid);
+        User userById ;
 
-        String hashpassword = PasswordEncrypt.hashPassword(password);
-        String hashrepassword = PasswordEncrypt.hashPassword(repassword);
+        int validationCode;
+        if (userid.isEmpty() || name.isEmpty() || email.isEmpty() || role == null) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
+            return;
+        }else {
+            validationCode = isValid1();
+        }
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid username!").show();
+            case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid email format!").show();
+            default -> {
+                userById = userBO.findUserById(userid);
+                if (userBO.updateUser(new UserDTO(userid, name, userById.getPassword(), email, role))) {
+                    new Alert(Alert.AlertType.INFORMATION, "User updated successfully!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Failed to update user! Please try again.").show();
+                }
 
-        if (!password.isEmpty() && !repassword.isEmpty()) {
-            if (!password.equals(repassword) & !PasswordVerifier.verifyPassword(repassword,hashpassword) & !PasswordVerifier.verifyPassword(repassword,hashrepassword)){
-                new Alert(Alert.AlertType.WARNING, "Passwords do not match! Please re-enter your password.").show();
-                return;
+
+                clearTextFileds();
+                getAll();
             }
         }
-
-        if (userBO.updateUser(new UserDTO(ID, name, hashrepassword, email, role))) {
-            new Alert(Alert.AlertType.INFORMATION, "User updated successfully!").show();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Failed to update user! Please try again.").show();
-        }
-
-
-        clearTextFileds();
-        getAll();
-
     }
 
 
@@ -295,9 +319,54 @@ public class UserController implements Initializable {
         ID = String.valueOf(coluserid.getCellData(index));
         txtuserid.setText(ID);
         txtusername.setText(String.valueOf(colusername.getCellData(index)));
-        txtpassword1.setText(String.valueOf(colpassword.getCellData(index)));
-        txtrepassword1.setText(String.valueOf(colpassword.getCellData(index)));
         txtemail.setText(String.valueOf(colemail.getCellData(index)));
         txtrole.setValue(String.valueOf(colrole.getCellData(index)));
+
+        txtpassword1.setEditable(false);
+        txtpassword.setEditable(false);
+        txtrepassword1.setEditable(false);
+        txtrepassword.setEditable(false);
+    }
+
+    @FXML
+    void txtemailOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.EMAIL,txtemail);
+    }
+
+    @FXML
+    void txtpassword1OnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.PASSWORD,txtpassword1);
+    }
+
+    @FXML
+    void txtrepassword1OnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.PASSWORD,txtrepassword1);
+    }
+
+    @FXML
+    void txtsearchOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtuseridOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtusernameOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.USERNAME,txtusername);
+    }
+    public int isValid() {
+        if (!Regex.setTextColor(TextField.USERNAME, txtusername)) return 1;
+        if (!Regex.setTextColor(lk.Ijse.Utill.TextField.EMAIL, txtemail)) return 2;
+        if (!Regex.setTextColor(TextField.PASSWORD, txtpassword1)) return 3;
+        if (!Regex.setTextColor(TextField.PASSWORD, txtrepassword1)) return 4;
+        return 0;
+    }
+    public int isValid1() {
+        if (!Regex.setTextColor(TextField.USERNAME, txtusername)) return 1;
+        if (!Regex.setTextColor(lk.Ijse.Utill.TextField.EMAIL, txtemail)) return 2;
+        return 0;
     }
 }

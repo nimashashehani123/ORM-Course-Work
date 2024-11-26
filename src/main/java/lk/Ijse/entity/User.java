@@ -22,15 +22,4 @@ public class User {
     private String password;
     private String email;
     private String role;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Student> studentList = new ArrayList<>();
-
-    public User(String userid, String username, String password, String email, String role) {
-        this.userid = userid;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.role = role;
-    }
 }

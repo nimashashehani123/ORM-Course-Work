@@ -28,7 +28,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtscourseid" layoutX="194.0" layoutY="132.0" prefHeight="26.0" prefWidth="218.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtscourseid" editable="false" layoutX="194.0" layoutY="132.0" onKeyReleased="#txtscourseidOnKeyReleased" prefHeight="26.0" prefWidth="218.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -37,7 +37,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtcoursename" layoutX="657.0" layoutY="134.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtcoursename" layoutX="657.0" layoutY="134.0" onKeyReleased="#txtcoursenameOnKeyReleased" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -46,7 +46,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtduration" layoutX="1162.0" layoutY="132.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtduration" layoutX="1162.0" layoutY="132.0" onKeyReleased="#txtdurationOnKeyReleased" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -55,7 +55,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtfees" layoutX="148.0" layoutY="221.0" prefHeight="26.0" prefWidth="281.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtfees" layoutX="148.0" layoutY="221.0" onKeyReleased="#txtfeesOnKeyReleased" prefHeight="26.0" prefWidth="281.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>

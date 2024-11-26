@@ -10,8 +10,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.Ijse.Utill.Regex;
+import lk.Ijse.Utill.TextField;
 import lk.Ijse.bo.BoFactory;
 import lk.Ijse.bo.custom.CourseBo;
 import lk.Ijse.bo.custom.EnrollmentBo;
@@ -264,25 +267,38 @@ public class EnrollmentController implements Initializable {
         Double remainingfee = totalfee - upfrontpayment;
         String comment = txtcomment.getText();
 
-        if (enrollmentBo.EnrollmentIdExists(id)){
-            new Alert(Alert.AlertType.ERROR, "Enrollment ID " + id + " already exists!").show();
+        int validationCode;
+        if (id.isEmpty() || sid.isEmpty() || studentname.isEmpty() ||cid.isEmpty() ||coursename.isEmpty() ||date == null ||totalfee == null || upfrontpayment == null ||comment.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
+        }else {
+            validationCode = isValid();
         }
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid comment!").show();
+            case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid upfrontpayment!").show();
+            default -> {
+                if (enrollmentBo.EnrollmentIdExists(id)){
+                    new Alert(Alert.AlertType.ERROR, "Enrollment ID " + id + " already exists!").show();
+                    return;
+                }
 
-        if (enrollmentBo.isStudentEnrolledInCourse(sid, cid)) {
-            new Alert(Alert.AlertType.ERROR, "Student " + sid + " is already enrolled in course " + cid + "!").show();
-            return;
-        }
+                if (enrollmentBo.isStudentEnrolledInCourse(sid, cid)) {
+                    new Alert(Alert.AlertType.ERROR, "Student " + sid + " is already enrolled in course " + cid + "!").show();
+                    return;
+                }
 
-        if (enrollmentBo.saveEnrollment(new EnrollmentDTO(id, sid,studentname,cid,coursename,date,upfrontpayment,remainingfee,comment))) {
-            clearTextFileds();
-            generateNextUserId();
-            getAll();
-            loadStudentIds();
-            loadCourseIds();
-            new Alert(Alert.AlertType.CONFIRMATION, "Saved!!").show();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                if (enrollmentBo.saveEnrollment(new EnrollmentDTO(id, sid, studentname, cid, coursename, date, upfrontpayment, remainingfee, comment))) {
+                    clearTextFileds();
+                    generateNextUserId();
+                    getAll();
+                    loadStudentIds();
+                    loadCourseIds();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Saved!!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                }
+            }
         }
     }
 
@@ -340,18 +356,29 @@ public class EnrollmentController implements Initializable {
         Enrollment enrollmentById = enrollmentBo.findEnrollmentById(id);
         Double newremainfeecalculate = newremainfeecalculate(enrollmentById, upfrontpayment);
         String comment = txtcomment.getText();
-
-        if(enrollmentBo.updateEnrollment(new EnrollmentDTO(id, sid,studentname,cid,coursename,date,upfrontpayment,newremainfeecalculate,comment))){
-            new Alert(Alert.AlertType.CONFIRMATION, "Update Successfully!!").show();
+        int validationCode;
+        if (id.isEmpty() || sid.isEmpty() || studentname.isEmpty() ||cid.isEmpty() ||coursename.isEmpty() ||date == null || upfrontpayment == null ||comment.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
+            return;
         }else {
-            new Alert(Alert.AlertType.ERROR, "Error!!").show();
+            validationCode = isValid();
         }
-        clearTextFileds();
-        generateNextUserId();
-        getAll();
-        loadStudentIds();
-        loadCourseIds();
-
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid comment!").show();
+            case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid upfrontpayment!").show();
+            default -> {
+                if (enrollmentBo.updateEnrollment(new EnrollmentDTO(id, sid, studentname, cid, coursename, date, upfrontpayment, newremainfeecalculate, comment))) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Update Successfully!!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                }
+                clearTextFileds();
+                generateNextUserId();
+                getAll();
+                loadStudentIds();
+                loadCourseIds();
+            }
+        }
     }
 
     private Double newremainfeecalculate(Enrollment enrollment,Double newupfrontpayment) {
@@ -420,6 +447,21 @@ public class EnrollmentController implements Initializable {
         Double fee = courseBo.findCourseById(id).getFee();
         txttotalfees.setText(String.valueOf(fee));
         txtcomment.setText((String) colcomment.getCellData(index));
+    }
+
+    @FXML
+    void txtcommentOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.NAME,txtcomment);
+    }
+
+    @FXML
+    void txtupfrontpaymentOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.PRICE,txtupfrontpayment);
+    }
+    public int isValid() {
+        if (!Regex.setTextColor(TextField.NAME, txtcomment)) return 1;
+        if (!Regex.setTextColor(TextField.PRICE, txtupfrontpayment)) return 2;
+        return 0;
     }
 
 }

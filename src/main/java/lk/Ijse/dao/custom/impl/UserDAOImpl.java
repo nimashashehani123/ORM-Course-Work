@@ -88,6 +88,15 @@ public class UserDAOImpl implements UserDAO {
             return count != null && count > 0;
         }
     }
+    public boolean usernameExists(String username) throws SQLException, ClassNotFoundException {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            String hql = "SELECT COUNT(u.username) FROM User u WHERE u.username = :username";
+            Query<Long> query = session.createQuery(hql, Long.class);
+            query.setParameter("username", username);
+            Long count = query.uniqueResult();
+            return count != null && count > 0;
+        }
+    }
 
     public User findUserById(String userId) throws Exception {
         Transaction transaction = null;

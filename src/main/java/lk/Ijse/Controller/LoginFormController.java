@@ -8,10 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.Ijse.Utill.PasswordVerifier;
+import lk.Ijse.Utill.Regex;
+import lk.Ijse.Utill.TextField;
 import lk.Ijse.bo.BoFactory;
 import lk.Ijse.bo.custom.UserBo;
 import lk.Ijse.bo.custom.impl.UserBoImpl;
@@ -44,24 +47,31 @@ public class LoginFormController {
         String role;
         int x ;
 
-        if (userByname != null) {
-            userid = userByname.getUserid();
-            role = userByname.getRole();
-            String password1 = userByname.getPassword();
-            if (PasswordVerifier.verifyPassword(password,password1)){
-                if(role.equals("admin")){
-                    x = 1;
-                    navigateToTheDashboard(x,userid);
-                }else {
-                    x = 0;
-                    navigateToTheDashboard(x,userid);
-                }
+        int validationCode = isValid();
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid username!").show();
+            case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid password format!").show();
+            default -> {
+                if (userByname != null) {
+                    userid = userByname.getUserid();
+                    role = userByname.getRole();
+                    String password1 = userByname.getPassword();
+                    if (PasswordVerifier.verifyPassword(password, password1)) {
+                        if (role.equals("admin")) {
+                            x = 1;
+                            navigateToTheDashboard(x, userid);
+                        } else {
+                            x = 0;
+                            navigateToTheDashboard(x, userid);
+                        }
 
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Invalid password! Please try again.").show();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Invalid password! Please try again.").show();
+                    }
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Username does not exist! Please check your username.").show();
+                }
             }
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Username does not exist! Please check your username.").show();
         }
     }
 
@@ -133,5 +143,19 @@ public class LoginFormController {
         }
     }
 
+    @FXML
+    void txtPassword2OnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.PASSWORD,txtPassword2);
+    }
+
+    @FXML
+    void txtUsernameOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.USERNAME,txtUsername);
+    }
+    public int isValid() {
+        if (!Regex.setTextColor(TextField.USERNAME, txtUsername)) return 1;
+        if (!Regex.setTextColor(TextField.PASSWORD, txtPassword2)) return 2;
+        return 0;
+    }
 
 }

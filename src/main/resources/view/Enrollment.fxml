@@ -112,14 +112,14 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXComboBox fx:id="txtstudentid" layoutX="566.0" layoutY="107.0" onAction="#handleStudentSelection" prefHeight="26.0" prefWidth="166.0" style="-fx-color: white;" unFocusColor="WHITE" />
-      <JFXComboBox fx:id="txtcourseid" layoutX="169.0" layoutY="185.0" onAction="#handleCourseSelection" prefHeight="26.0" prefWidth="166.0" unFocusColor="WHITE" />
+      <JFXComboBox fx:id="txtstudentid" editable="true" layoutX="566.0" layoutY="107.0" onAction="#handleStudentSelection" prefHeight="26.0" prefWidth="166.0" style="-fx-color: white;" styleClass="text-field" stylesheets="@../style/styel.css" unFocusColor="WHITE" />
+      <JFXComboBox fx:id="txtcourseid" editable="true" layoutX="169.0" layoutY="185.0" onAction="#handleCourseSelection" prefHeight="26.0" prefWidth="166.0" styleClass="text-field" stylesheets="@../style/styel.css" unFocusColor="WHITE" />
       <JFXTextField fx:id="txtstudentname" editable="false" layoutX="1032.0" layoutY="104.0" prefHeight="26.0" prefWidth="166.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtupfrontpayment" layoutX="641.0" layoutY="250.0" prefHeight="31.0" prefWidth="149.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtupfrontpayment" layoutX="641.0" layoutY="250.0" onKeyReleased="#txtupfrontpaymentOnKeyReleased" prefHeight="31.0" prefWidth="149.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -149,7 +149,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtcomment" layoutX="984.0" layoutY="250.0" prefHeight="31.0" prefWidth="149.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
+      <JFXTextField fx:id="txtcomment" layoutX="984.0" layoutY="250.0" onKeyReleased="#txtcommentOnKeyReleased" prefHeight="31.0" prefWidth="149.0" style="-fx-text-fill: white;" unFocusColor="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

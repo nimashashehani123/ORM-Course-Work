@@ -8,10 +8,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.Ijse.Utill.PasswordEncrypt;
 import lk.Ijse.Utill.PasswordVerifier;
+import lk.Ijse.Utill.Regex;
+import lk.Ijse.Utill.TextField;
 import lk.Ijse.bo.BoFactory;
 import lk.Ijse.bo.custom.UserBo;
 import lk.Ijse.bo.custom.impl.UserBoImpl;
@@ -85,13 +88,29 @@ public class SignUpFormController implements Initializable {
         String email = txtUserEmail.getText();
         String role = (String) txtrole.getValue();
 
-        if (userBO.UserIdExists(id)) {
-            new Alert(Alert.AlertType.ERROR, "User ID " + id + " already exists!").show();
-            return;
-        }
+
+        int validationCode;
         String encryptedrePassword = PasswordEncrypt.hashPassword(repassword);
+        if (id.isEmpty() || name.isEmpty() || password.isEmpty() || repassword.isEmpty() || email.isEmpty() || role == null) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
+            return;
+        }else {
+            validationCode = isValid();
+        }
 
-
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid username!").show();
+            case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid email format!").show();
+            case 3 -> new Alert(Alert.AlertType.ERROR, "Invalid password format!").show();
+            case 4 -> new Alert(Alert.AlertType.ERROR, "Invalid Repassword format!").show();
+            default -> {
+                if (userBO.UserIdExists(id)) {
+                    new Alert(Alert.AlertType.ERROR, "User ID " + id + " already exists!").show();
+                    return;
+                }else if(userBO.usernameExists(name)){
+                    new Alert(Alert.AlertType.ERROR, "User name " + name + " already exists!").show();
+                    return;
+                }
         if (PasswordVerifier.verifyPassword(password, encryptedrePassword)) {
             if (userBO.saveUser(new UserDTO(id, name, encryptedrePassword, email,role))) {
                 clearTextFileds();
@@ -102,7 +121,8 @@ public class SignUpFormController implements Initializable {
         }else {
             new Alert(Alert.AlertType.WARNING, "Passwords do not match! Please re-enter your password!!").show();
         }
-
+            }
+        }
     }
     private void clearTextFileds() {
         txtUserID.clear();
@@ -152,9 +172,41 @@ public class SignUpFormController implements Initializable {
         txtPassword1.setVisible(false);
     }
 
+
+
     @FXML
     void txtroleOnAction(ActionEvent event) {
 
     }
+
+
+    @FXML
+    void txtPassword2OnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.PASSWORD,txtPassword2);
+    }
+
+    @FXML
+    void txtRePassword2OnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.PASSWORD,txtRePassword2);
+    }
+
+    @FXML
+    void txtUserEmailOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.EMAIL,txtUserEmail);
+    }
+
+    @FXML
+    void txtUsernameOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.USERNAME,txtUsername);
+    }
+
+    public int isValid() {
+        if (!Regex.setTextColor(TextField.USERNAME, txtUsername)) return 1;
+        if (!Regex.setTextColor(TextField.EMAIL, txtUserEmail)) return 2;
+        if (!Regex.setTextColor(TextField.PASSWORD, txtPassword2)) return 3;
+        if (!Regex.setTextColor(TextField.PASSWORD, txtRePassword2)) return 4;
+        return 0;
+    }
+
 
 }

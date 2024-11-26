@@ -10,8 +10,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.Ijse.Utill.Regex;
+import lk.Ijse.Utill.TextField;
 import lk.Ijse.bo.BoFactory;
 import lk.Ijse.bo.custom.EnrollmentBo;
 import lk.Ijse.bo.custom.PaymentBo;
@@ -151,25 +154,37 @@ public class PaymentController implements Initializable {
         Double amount = Double.valueOf(txtamount.getText());
         LocalDate date = LocalDate.parse(txtdate.getText());
 
-        if (paymentBo.PaymentIdExists(id)){
-            new Alert(Alert.AlertType.ERROR, "Payment ID " + id + " already exists!").show();
-            return;
-        }
 
-        if(amount > (enrollmentBo.findEnrollmentById(eid).getRemainingfee())){
-            new Alert(Alert.AlertType.ERROR, "Payment exceeds the remaining fee. Please enter a valid amount!").show();
+        int validationCode;
+        if (id.isEmpty() || eid.isEmpty() || amount == null || date == null) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
+        }else {
+            validationCode = isValid();
         }
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid amount!").show();
+            default -> {
+                if (paymentBo.PaymentIdExists(id)){
+                    new Alert(Alert.AlertType.ERROR, "Payment ID " + id + " already exists!").show();
+                    return;
+                }
 
-        if (paymentBo.savePayment(new PaymentDTO(id,eid,amount,date))) {
-            updateremainfee();
-            clearTextFileds();
-            loadEnrollmentIds();
-            generateNextPaymentId();
-            getAll();
-            new Alert(Alert.AlertType.CONFIRMATION, "Saved!!").show();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                if(amount > (enrollmentBo.findEnrollmentById(eid).getRemainingfee())){
+                    new Alert(Alert.AlertType.ERROR, "Payment exceeds the remaining fee. Please enter a valid amount!").show();
+                    return;
+                }
+                if (paymentBo.savePayment(new PaymentDTO(id, eid, amount, date))) {
+                    updateremainfee();
+                    clearTextFileds();
+                    loadEnrollmentIds();
+                    generateNextPaymentId();
+                    getAll();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Saved!!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                }
+            }
         }
     }
 
@@ -247,19 +262,32 @@ public class PaymentController implements Initializable {
         LocalDate date = LocalDate.parse(txtdate.getText());
         Double previousamount = paymentBo.findPaymentById(id).getAmount();
 
-        if(amount > (enrollmentBo.findEnrollmentById(eid).getRemainingfee())){
-            new Alert(Alert.AlertType.ERROR, "Payment exceeds the remaining fee. Please enter a valid amount!").show();
+        int validationCode;
+        if (id.isEmpty() || eid.isEmpty() || amount == null || date == null) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }
-        if(paymentBo.updatePayment(new PaymentDTO(id,eid,amount,date))){
-            updateremainfees(id,amount,previousamount);
-            new Alert(Alert.AlertType.CONFIRMATION, "Update Successfully!!").show();
         }else {
-            new Alert(Alert.AlertType.ERROR, "Error!!").show();
+            validationCode = isValid();
         }
-        clearTextFileds();
-        loadEnrollmentIds();
-        getAll();
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid amount!").show();
+            default -> {
+
+                if(amount > (enrollmentBo.findEnrollmentById(eid).getRemainingfee())){
+                    new Alert(Alert.AlertType.ERROR, "Payment exceeds the remaining fee. Please enter a valid amount!").show();
+                    return;
+                }
+                if (paymentBo.updatePayment(new PaymentDTO(id, eid, amount, date))) {
+                    updateremainfees(id, amount, previousamount);
+                    new Alert(Alert.AlertType.CONFIRMATION, "Update Successfully!!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                }
+                clearTextFileds();
+                loadEnrollmentIds();
+                getAll();
+            }
+        }
     }
                                                                 //90 - 10 =80              90 -10 = 80
                                                                 //90-20 = 70               90 -5 = 85
@@ -298,5 +326,14 @@ public class PaymentController implements Initializable {
         txtenrollmentid.setValue((String) colenrollmentid.getCellData(index));
         txtamount.setText(colamount.getCellData(index).toString());
         txtdate.setText(coldate.getCellData(index).toString());
+    }
+
+    @FXML
+    void txtamountOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.PRICE,txtamount);
+    }
+    public int isValid() {
+        if (!Regex.setTextColor(TextField.PRICE, txtamount)) return 1;
+        return 0;
     }
 }

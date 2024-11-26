@@ -9,10 +9,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.Ijse.Utill.PasswordEncrypt;
 import lk.Ijse.Utill.PasswordVerifier;
+import lk.Ijse.Utill.Regex;
+import lk.Ijse.Utill.TextField;
 import lk.Ijse.bo.BoFactory;
 import lk.Ijse.bo.custom.StudentBo;
 import lk.Ijse.bo.custom.impl.StudentBoImpl;
@@ -86,7 +89,6 @@ public class StudentController implements Initializable {
     private JFXTextField txttel;
     ObservableList<StudentTm> observableList;
     String ID;
-    String userid = "U001";
     StudentBo studentBo = (StudentBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.Student);
 
     @Override
@@ -143,21 +145,34 @@ public class StudentController implements Initializable {
         String tel = txttel.getText();
         String email = txtemail.getText();
 
-        if (studentBo.StudentIdExists(id)){
-            new Alert(Alert.AlertType.ERROR, "Student ID " + id + " already exists!").show();
+
+        int validationCode;
+        if (id.isEmpty() || name.isEmpty() || address.isEmpty() || tel.isEmpty() || email.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
+        }else {
+            validationCode = isValid();
         }
-
-            if (studentBo.saveStudent(new StudentDTO(id, name, address, tel,email,userid))) {
-                clearTextFileds();
-                generateNextUserId();
-                getAll();
-                new Alert(Alert.AlertType.CONFIRMATION, "Saved!!").show();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Error!!").show();
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid studentname!").show();
+            case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid email format!").show();
+            case 3 -> new Alert(Alert.AlertType.ERROR, "Invalid address!").show();
+            case 4 -> new Alert(Alert.AlertType.ERROR, "Invalid telephone number!").show();
+            default -> {
+                if (studentBo.StudentIdExists(id)){
+                    new Alert(Alert.AlertType.ERROR, "Student ID " + id + " already exists!").show();
+                    return;
+                }
+                if (studentBo.saveStudent(new StudentDTO(id, name, address, tel, email))) {
+                    clearTextFileds();
+                    generateNextUserId();
+                    getAll();
+                    new Alert(Alert.AlertType.CONFIRMATION, "Saved!!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                }
             }
-
-
+        }
     }
 
     private void clearTextFileds() {
@@ -182,8 +197,21 @@ public class StudentController implements Initializable {
         Optional<ButtonType> result = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
 
         if (result.orElse(no) == yes) {
-            if (!studentBo.deleteStudent(ID)) {
-                new Alert(Alert.AlertType.ERROR, "Error!!").show();
+            try {
+                if (studentBo.findStudentById(ID).getEnrollmentList() != null && !studentBo.findStudentById(ID).getEnrollmentList().isEmpty()) {
+                    new Alert(Alert.AlertType.WARNING, "This student is enrolled in courses and cannot be deleted.").show();
+                    return;
+                }
+
+                if (studentBo.deleteStudent(ID)) {
+                    new Alert(Alert.AlertType.INFORMATION, "Student deleted successfully.").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Failed to delete the student.").show();
+                }
+            } catch (NullPointerException e) {
+                new Alert(Alert.AlertType.ERROR, "Student not found.").show();
+            } catch (Exception e) {
+                new Alert(Alert.AlertType.ERROR, "Unexpected error occurred: " + e.getMessage()).show();
             }
         }
         generateNextUserId();
@@ -210,14 +238,28 @@ public class StudentController implements Initializable {
         String address = txtaddress.getText();
         String tel = txttel.getText();
         String email = txtemail.getText();
-
-            if(studentBo.updateStudent(new StudentDTO(ID,name,address,tel,email,userid))){
-                new Alert(Alert.AlertType.CONFIRMATION, "Update Successfully!!").show();
-            }else {
-                new Alert(Alert.AlertType.ERROR, "Error!!").show();
+        int validationCode;
+        if (ID.isEmpty() || name.isEmpty() || address.isEmpty() || tel.isEmpty() || email.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
+            return;
+        }else {
+            validationCode = isValid();
+        }
+        switch (validationCode) {
+            case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid studentname!").show();
+            case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid email format!").show();
+            case 3 -> new Alert(Alert.AlertType.ERROR, "Invalid address!").show();
+            case 4 -> new Alert(Alert.AlertType.ERROR, "Invalid telephone number!").show();
+            default -> {
+                if (studentBo.updateStudent(new StudentDTO(ID, name, address, tel, email))) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Update Successfully!!").show();
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Error!!").show();
+                }
+                clearTextFileds();
+                getAll();
             }
-        clearTextFileds();
-        getAll();
+        }
     }
     public void rowOnMouseClicked(MouseEvent mouseEvent) {
         Integer index = tblstudent.getSelectionModel().getSelectedIndex();
@@ -230,6 +272,42 @@ public class StudentController implements Initializable {
         txtaddress.setText(coladdress.getCellData(index).toString());
         txttel.setText(coltel.getCellData(index).toString());
         txtemail.setText(colemail.getCellData(index).toString());
+    }
+    @FXML
+    void txtaddressOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.ADDRESS,txtaddress);
+    }
+
+    @FXML
+    void txtemailOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.EMAIL,txtemail);
+    }
+
+    @FXML
+    void txtsearchOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtstudentidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtstudentnameOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.NAME,txtstudentname);
+    }
+
+    @FXML
+    void txttelOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.TEL,txttel);
+    }
+    public int isValid() {
+        if (!Regex.setTextColor(lk.Ijse.Utill.TextField.NAME, txtstudentname)) return 1;
+        if (!Regex.setTextColor(lk.Ijse.Utill.TextField.EMAIL, txtemail)) return 2;
+        if (!Regex.setTextColor(TextField.ADDRESS, txtaddress)) return 3;
+        if (!Regex.setTextColor(TextField.TEL, txttel)) return 4;
+        return 0;
     }
 
 }

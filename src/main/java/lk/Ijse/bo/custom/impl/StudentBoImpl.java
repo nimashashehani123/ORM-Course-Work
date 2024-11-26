@@ -18,14 +18,12 @@ public class StudentBoImpl implements StudentBo {
     UserDAO userDAO = (UserDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DaoType.User);
     @Override
     public boolean saveStudent(StudentDTO dto) throws Exception {
-        User user = userDAO.findUserById(dto.getUserid());
-        return studentDAO.save(new Student(dto.getSid(),dto.getName(),dto.getAddress(),dto.getTel(),dto.getEmail(),user));
+        return studentDAO.save(new Student(dto.getSid(),dto.getName(),dto.getAddress(),dto.getTel(),dto.getEmail()));
     }
 
     @Override
     public boolean updateStudent(StudentDTO dto) throws Exception {
-        User user = userDAO.findUserById(dto.getUserid());
-        return studentDAO.update(new Student(dto.getSid(),dto.getName(),dto.getAddress(),dto.getTel(),dto.getEmail(),user));
+        return studentDAO.update(new Student(dto.getSid(),dto.getName(),dto.getAddress(),dto.getTel(),dto.getEmail()));
     }
 
     @Override
@@ -38,8 +36,7 @@ public class StudentBoImpl implements StudentBo {
         List<Student> students = studentDAO.getAll();
         List<StudentDTO> dtos = new ArrayList<>();
         for (Student student : students) {
-            String userId = student.getUser() != null ? student.getUser().getUserid() : null;
-            dtos.add(new StudentDTO(student.getSid(), student.getName(), student.getAddress(), student.getTel(), student.getEmail(), userId));
+            dtos.add(new StudentDTO(student.getSid(), student.getName(), student.getAddress(), student.getTel(), student.getEmail()));
         }
         return dtos;
     }

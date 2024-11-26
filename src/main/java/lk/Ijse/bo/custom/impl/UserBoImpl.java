@@ -59,4 +59,9 @@ public class UserBoImpl implements UserBo {
     public User findUserByname(String username) throws Exception {
         return userDAO.findUserByname(username);
     }
+
+    @Override
+    public boolean usernameExists(String username) throws SQLException, ClassNotFoundException {
+        return userDAO.usernameExists(username);
+    }
 }

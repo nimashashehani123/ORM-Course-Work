@@ -16,8 +16,9 @@
     -fx-border-color: white;
 }
 
-.dashboard{
-    -fx-background-image: url('assest/lodingpageimage.jpg');
-    -fx-background-size: cover;
-    -fx-background-position: center;
+.combo-box .text-field {
+    -fx-text-fill: white;       /* Text color when typing */
+    -fx-font-size: 15px;        /* Font size when typing */ /* Font weight when typing */
+    -fx-background-color: #333;
+    -fx-font-family: "Comic Sans MS";/* Background color of the text field */
 }

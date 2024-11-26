@@ -29,7 +29,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtpaymentid" layoutX="181.0" layoutY="132.0" prefHeight="26.0" prefWidth="266.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtpaymentid" editable="false" layoutX="181.0" layoutY="132.0" prefHeight="26.0" prefWidth="266.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -43,7 +43,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtamount" layoutX="1162.0" layoutY="132.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtamount" layoutX="1162.0" layoutY="132.0" onKeyReleased="#txtamountOnKeyReleased" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -52,7 +52,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtdate" layoutX="148.0" layoutY="221.0" prefHeight="26.0" prefWidth="281.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtdate" editable="false" layoutX="148.0" layoutY="221.0" prefHeight="26.0" prefWidth="281.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -78,7 +78,7 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </JFXButton>
-      <JFXComboBox fx:id="txtenrollmentid" layoutX="676.0" layoutY="132.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;" />
+      <JFXComboBox fx:id="txtenrollmentid" editable="true" layoutX="676.0" layoutY="132.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;" styleClass="text-field" stylesheets="@../style/styel.css" />
       <JFXButton fx:id="btnclear" layoutX="1292.0" layoutY="224.0" onAction="#btnclearOnAction" prefHeight="27.0" prefWidth="76.0" style="-fx-background-color: #faa302;" text="Clear ✨">
          <font>
             <Font name="Comic Sans MS" size="13.0" />

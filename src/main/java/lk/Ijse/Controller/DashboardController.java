@@ -133,6 +133,10 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
          originalMainformChildren = new ArrayList<>(mainform.getChildren());
+         setcounts();
+    }
+
+    public void setcounts(){
         try {
             int coursesCount = courseBo.getCourseCount();
             int enrollmentCount = enrollmentBo.getEnrollmentCount();
@@ -161,6 +165,7 @@ public class DashboardController implements Initializable {
     @FXML
     void btndashboardOnAction(ActionEvent event) throws IOException {
         try {
+            setcounts();
             mainform.getChildren().setAll(originalMainformChildren);
         } catch (Exception e) {
             e.printStackTrace();

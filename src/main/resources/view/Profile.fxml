@@ -28,7 +28,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtuserid" layoutX="241.0" layoutY="206.0" prefHeight="26.0" prefWidth="218.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtuserid" editable="false" layoutX="241.0" layoutY="206.0" prefHeight="26.0" prefWidth="218.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -37,7 +37,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtusername" layoutX="264.0" layoutY="264.0" prefHeight="26.0" prefWidth="199.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtusername" editable="false" layoutX="264.0" layoutY="264.0" prefHeight="26.0" prefWidth="199.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -46,7 +46,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtemail" layoutX="221.0" layoutY="317.0" prefHeight="26.0" prefWidth="248.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtemail" editable="false" layoutX="221.0" layoutY="317.0" prefHeight="26.0" prefWidth="248.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
@@ -78,12 +78,12 @@
             <Font name="Comic Sans MS" size="13.0" />
          </font>
       </JFXButton>
-      <JFXPasswordField fx:id="txtpassword1" layoutX="314.0" layoutY="488.0" prefHeight="31.0" prefWidth="188.0">
+      <JFXPasswordField fx:id="txtpassword1" layoutX="314.0" layoutY="488.0" onKeyReleased="#txtpassword1OnKeyReleased" prefHeight="31.0" prefWidth="188.0">
          <font>
             <Font size="15.0" />
          </font>
       </JFXPasswordField>
-      <JFXPasswordField fx:id="txtnewpassword1" layoutX="287.0" layoutY="539.0" prefHeight="31.0" prefWidth="218.0">
+      <JFXPasswordField fx:id="txtnewpassword1" layoutX="287.0" layoutY="539.0" onKeyReleased="#txtnewpassword1OnKeyReleased" prefHeight="31.0" prefWidth="218.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -109,7 +109,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtrole" layoutX="221.0" layoutY="369.0" prefHeight="26.0" prefWidth="248.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtrole" editable="false" layoutX="221.0" layoutY="369.0" prefHeight="26.0" prefWidth="248.0" style="-fx-text-fill: white;">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></JFXTextField>
