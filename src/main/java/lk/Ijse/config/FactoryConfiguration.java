@@ -17,15 +17,11 @@ public class FactoryConfiguration {
     private FactoryConfiguration() {
         Configuration configuration = new Configuration();
         Properties properties = new Properties();
-
-        // Load properties from hibernate.properties file
         try {
             properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
         } catch (IOException e) {
             throw new RuntimeException("Failed to load hibernate properties", e);
         }
-
-        // Set properties and add annotated classes
         configuration.setProperties(properties);
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Student.class);
@@ -33,7 +29,7 @@ public class FactoryConfiguration {
         configuration.addAnnotatedClass(Enrollment.class);
         configuration.addAnnotatedClass(Payment.class);
 
-        // Build the session factory
+
         sessionFactory = configuration.buildSessionFactory();
     }
 
